@@ -1,0 +1,12 @@
+# Normaliser les fins de ligne (LF) pour tous les fichiers texte
+* text=auto eol=lf
+
+# Pour forcer certains types de fichiers à être reconnus comme texte
+*.php text
+*.css text
+*.js text
+*.html text
+*.md text
+
+# Pour spécifier un diff plus lisible pour les fichiers SQL (optionnel)
+*.sql diff=sql
