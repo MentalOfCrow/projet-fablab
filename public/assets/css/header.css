@@ -1,111 +1,38 @@
+/* Style du header */
 header {
-    background: linear-gradient(90deg, #4B79A1, #283E51); /* Dégradé moderne */
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-}
-
-header:hover {
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Effet subtil au hover */
-}
-
-/* Logo du header */
-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 0;
-    color: #FFD700; /* Couleur dorée pour le logo */
-    transition: transform 0.3s ease;
-}
-
-header h1:hover {
-    transform: scale(1.1);
-}
-
-/* Navigation */
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
+    background-color: #333;
+    padding: 15px 0;
+    text-align: center;
     position: relative;
 }
 
-header nav ul li a {
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #FFD700; /* Jaune doré */
-}
-
-/* Barre de recherche */
-.search-container {
+/* Container pour aligner logo et bouton */
+.nav-container {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    padding: 0.5rem 1rem;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.search-container:hover {
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+/* Logo centré */
+.logo img {
+    height: 70px; /* Ajuste la taille du logo */
+    display: block;
+    margin: 0 auto;
 }
 
-.search-container input[type="text"] {
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    flex: 1;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    transition: background-color 0.3s ease;
+/* Bouton Connexion */
+.login-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-.search-container input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.search-container input[type="text"]:focus {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-.search-container button {
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    background: #FFD700; /* Bouton doré */
-    color: #333;
-    border: none;
-    border-radius: 20px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.search-container button:hover {
-    background: #E6B800; /* Couleur dorée foncée */
-    transform: scale(1.1);
+.login-btn:hover {
+    background-color: #0056b3;
 }
