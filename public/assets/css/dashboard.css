@@ -1,0 +1,311 @@
+main {
+    height: auto;
+}
+
+.dashboard-container {
+    width: 80%;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style des onglets */
+.tabs1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.tabs2 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-link {
+    padding: 10px 15px;
+    cursor: pointer;
+    background: #ddd;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    flex: 1;
+    transition: 0.3s;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.tab-link:hover {
+    background: #bbb;
+}
+
+.tab-link.active {
+    background: #333;
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+/* Contenu des onglets */
+.tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/*###########################*/
+/*###########################*/
+/*#########COMMANDE##########*/
+
+/* Formulaire de commande */
+.add-order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Champs */
+.add-order-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.add-order-form input,
+.add-order-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Fichier STL */
+.add-order-form input[type="file"] {
+    padding: 5px;
+}
+
+/* Bouton */
+.add-order-form button {
+    background-color: #bbb;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.add-order-form button:hover {
+    background-color: #333;
+}
+
+/*###########################*/
+/*###########################*/
+/*#########ATTENTE###########*/
+/* Liste des commandes */
+.order-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card de commande */
+.order-card {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+/* Informations de commande */
+.order-info {
+    text-align: left;
+}
+
+.order-info h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.order-info p {
+    margin: 5px 0;
+}
+
+/* Statut */
+.status {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    width: 100px;
+}
+
+.status.waiting {
+    background-color: orange;
+}
+
+/* Style pour la date de commande */
+.order-info p strong {
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+/*###########################*/
+/*###########################*/
+/*########IMPRIMANTES########*/
+
+/* Conteneur du formulaire */
+.add-printer-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Style des labels */
+.add-printer-form label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Style des champs de saisie et de sélection */
+.add-printer-form input,
+.add-printer-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Bouton d'ajout */
+.add-printer-form button {
+    background-color: #bbb;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-printer-form button:hover {
+    background-color: #333;
+}
+
+/* Liste des imprimantes */
+.printer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card de l'imprimante */
+.printer-card {
+    display: flex;
+    width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.printer-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+.printer-info {
+    padding: 10px;
+    flex: 1;
+}
+
+.printer-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.etat {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    width: 120px;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+/*###########################*/
+/*###########################*/
+/*#######UTILISATEUR#########*/
+
+/* Table des utilisateurs */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+
+
+

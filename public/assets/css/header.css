@@ -4,6 +4,7 @@ header {
     padding: 15px 0;
     text-align: center;
     position: relative;
+    width: 100%;
 }
 
 /* Container pour aligner logo et bouton */
@@ -11,14 +12,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 /* Logo centré */
 .logo img {
-    height: 70px; /* Ajuste la taille du logo */
+    height: 100px; /* Ajuste la taille du logo */
     display: block;
     margin: 0 auto;
 }
@@ -27,12 +27,28 @@ header {
 .login-btn {
     background-color: #007BFF;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
+    display: inline-block;
 }
 
 .login-btn:hover {
     background-color: #0056b3;
+}
+
+/* Bouton Déconnexion */
+.logout-btn {
+    background-color: #FF4C4C;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.logout-btn:hover {
+    background-color: #CC0000;
 }

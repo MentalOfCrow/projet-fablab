@@ -18,13 +18,19 @@ if (session_status() == PHP_SESSION_NONE) {
     <header>
         <nav>
             <div class="nav-container">
-                <!-- Logo au centre -->
+                <!-- Logo -->
                 <a href="/backend/views/index.php" class="logo">
-                    <img src="../../public/assets/images/logo-FabLab.png" alt="FabLab Logo">
+                    <img src="/public/assets/images/logo-FabLab.png" alt="FabLab Logo">
                 </a>
                 
-                <!-- Bouton Connexion à droite -->
-                <a href="/backend/views/login.php" class="login-btn">Connexion</a>
+                <!-- Bouton Connexion / Déconnexion -->
+                <div class="auth-btn">
+                    <?php if (isset($_SESSION["user_id"])): ?>
+                        <a href="/backend/views/logout.php" class="logout-btn">Déconnexion</a>
+                    <?php else: ?>
+                        <a href="/backend/views/login.php" class="login-btn">Connexion</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </nav>
     </header>

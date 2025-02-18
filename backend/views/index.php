@@ -10,7 +10,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FabLab - Gestion des impressions 3D</title>
-    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="/public/assets/css/header.css">
     <link rel="stylesheet" href="/public/assets/css/index.css">
     <link rel="stylesheet" href="/public/assets/css/footer.css">
 </head>
