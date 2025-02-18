@@ -9,4 +9,4 @@ function checkCompletedPrints() {
 }
 
 // Rafraîchir toutes les 30 secondes
-setInterval(checkCompletedPrints, 300000);
+setInterval(checkCompletedPrints, 30000);
