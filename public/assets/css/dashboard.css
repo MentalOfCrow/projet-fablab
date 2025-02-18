@@ -176,7 +176,44 @@ main {
     color: #333;
 }
 
+/* Conteneur du formulaire de lancement */
+.order-info form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
 
+/* Alignement des labels et champs */
+.order-info label {
+    font-weight: bold;
+}
+
+/* Champs de sélection et saisie */
+.order-info select,
+.order-info input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Bouton "Lancer l'impression" */
+.order-info button {
+    background-color: #bbb; /* Vert */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.order-info button:hover {
+    background-color: #28a745; /* Vert plus foncé au survol */
+}
 
 /*###########################*/
 /*###########################*/
@@ -277,6 +314,28 @@ form {
     margin-bottom: 30px;
 }
 
+.impression-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.print-progress {
+    width: 100%;
+    background-color: #ddd; /* Gris clair */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #ff9800; /* Orange pour l'impression en cours */
+    transition: width 1s linear;
+}
+
+
 /*###########################*/
 /*###########################*/
 /*#######UTILISATEUR#########*/
@@ -305,6 +364,32 @@ select {
     border-radius: 5px;
 }
 
+/*###########################*/
+/*###########################*/
+/*#########EXPORT############*/
+
+/* Formulaire d'export */
+.export-form {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+/* Boutons d'export */
+.export-form button {
+    background-color: #bbb;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.export-form button:hover {
+    background-color: #333;
+}
 
 
 

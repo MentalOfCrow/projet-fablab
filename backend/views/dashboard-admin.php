@@ -91,6 +91,11 @@ $user = $stmt->fetch();
         
         <div class="order-list">
             <?php
+            // Récupérer les imprimantes disponibles (état = libre)
+            $stmtImprimantes = $pdo->query("SELECT id, nom FROM imprimantes WHERE etat = 'libre'");
+            $imprimantes = $stmtImprimantes->fetchAll();
+
+            // Récupérer les commandes en attente
             $stmt = $pdo->query("
                 SELECT commandes.*, users.fullname 
                 FROM commandes
@@ -110,6 +115,24 @@ $user = $stmt->fetch();
                             <p><strong>Fichier STL :</strong> <a href='/public/uploads/{$row['fichier_stl']}' download>Télécharger</a></p>
                             <p><strong>Date :</strong> {$date_formatee}</p>
                             <p class='status waiting'>En attente</p>
+
+                            <!-- Sélection de l'imprimante et durée -->
+                            <form method='POST' action='../controllers/start_printing.php'>
+                                <input type='hidden' name='commande_id' value='{$row['id']}'>
+
+                                <label for='imprimante'>Sélectionner une imprimante :</label>
+                                <select name='imprimante_id' required>
+                                    <option value=''>Sélectionner...</option>";
+                                    foreach ($imprimantes as $imprimante) {
+                                        echo "<option value='{$imprimante['id']}'>{$imprimante['nom']}</option>";
+                                    }
+                                echo "</select>
+
+                                <label for='duree'>Durée de l'impression (en min) :</label>
+                                <input type='number' name='duree' min='1' required>
+
+                                <button type='submit'>Lancer l'impression</button>
+                            </form>
                         </div>
                     </div>";
             }
@@ -117,15 +140,84 @@ $user = $stmt->fetch();
         </div>
     </div>
 
+
     <div id="encours" class="tab-content">
         <h2>Impressions en cours</h2>
-        <p>Contenu à venir...</p>
+        
+        <div class="order-list">
+            <?php
+            $stmt = $pdo->query("
+                SELECT commandes.*, imprimantes.nom AS imprimante_nom 
+                FROM commandes
+                JOIN imprimantes ON commandes.imprimante_id = imprimantes.id
+                WHERE commandes.statut = 'en cours'
+                ORDER BY commandes.heure_debut DESC
+            ");
+
+            while ($row = $stmt->fetch()) {
+                $heure_debut = strtotime($row['heure_debut']);
+                $heure_fin = $heure_debut + ($row['duree'] * 60);
+                $temps_restant = max(0, $heure_fin - time());
+                $minutes_restantes = floor($temps_restant / 60);
+                $secondes_restantes = $temps_restant % 60;
+
+                echo "<div class='order-card'>
+                        <div class='order-info'>
+                            <h3>{$row['nom_commande']}</h3>
+                            <p><strong>Imprimante :</strong> {$row['imprimante_nom']}</p>
+                            <p><strong>Temps restant :</strong> <span class='timer' data-time='$temps_restant'>{$minutes_restantes} min {$secondes_restantes} sec</span></p>
+                        </div>
+                    </div>";
+            }
+            ?>
+        </div>
     </div>
+
+    <script>
+        function updateTimers() {
+            document.querySelectorAll('.timer').forEach(timer => {
+                let time = parseInt(timer.getAttribute('data-time'));
+                if (time > 0) {
+                    time--;
+                    timer.setAttribute('data-time', time);
+                    let minutes = Math.floor(time / 60);
+                    let seconds = time % 60;
+                    timer.innerText = minutes + " min " + seconds + " sec";
+                } else {
+                    timer.innerText = "Terminé";
+                }
+            });
+        }
+        setInterval(updateTimers, 1000);
+    </script>
+
 
     <div id="terminees" class="tab-content">
         <h2>Impressions terminées</h2>
-        <p>Contenu à venir...</p>
+        
+        <div class="order-list">
+            <?php
+            $stmt = $pdo->query("
+                SELECT commandes.*, imprimantes.nom AS imprimante_nom 
+                FROM commandes
+                JOIN imprimantes ON commandes.imprimante_id = imprimantes.id
+                WHERE commandes.statut = 'terminé'
+                ORDER BY commandes.heure_debut DESC
+            ");
+
+            while ($row = $stmt->fetch()) {
+                echo "<div class='order-card'>
+                        <div class='order-info'>
+                            <h3>{$row['nom_commande']}</h3>
+                            <p><strong>Imprimante :</strong> {$row['imprimante_nom']}</p>
+                            <p><strong>Statut :</strong> ✅ Terminé</p>
+                        </div>
+                    </div>";
+            }
+            ?>
+        </div>
     </div>
+
 
     <div id="imprimantes" class="tab-content">
         <h2>Liste des imprimantes</h2>
@@ -212,12 +304,24 @@ $user = $stmt->fetch();
     </div>
 
     <div id="export" class="tab-content">
-        <h2>Export</h2>
-        <p>Contenu à venir...</p>
+        <h2>Exporter les données</h2>
+
+        <!-- Formulaire pour exporter les commandes -->
+        <form action="../controllers/export_orders.php" method="POST" class="export-form">
+            <button type="submit" name="export_orders">📜 Exporter l'historique des commandes (PDF)</button>
+        </form>
+
+        <!-- Formulaire pour exporter les statistiques -->
+        <form action="../controllers/export_stats.php" method="POST" class="export-form">
+            <button type="submit" name="export_stats">📊 Exporter les statistiques (PDF)</button>
+        </form>
     </div>
+
 </div>
 
 <script src="/public/js/tabs.js"></script>
+<script src="/public/js/updatePrints.js"></script>
+
 
 <?php include '../includes/footer.php'; ?>
 
