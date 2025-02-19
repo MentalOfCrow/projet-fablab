@@ -1,0 +1,115 @@
+/* Importation de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0e0e0, #f4f4f4); /* Fond gris dégradé */
+    color: #333;
+}
+
+/* --- BANNIÈRE --- */
+.terms-banner {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.terms-banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #ffffff; /* Titre en blanc */
+}
+
+.terms-banner p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* --- CONTENEUR PRINCIPAL --- */
+.terms-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background: #f1f1f1; /* Fond gris clair */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.terms-container:hover {
+    transform: scale(1.01);
+}
+
+/* --- SECTIONS --- */
+.terms-section {
+    background: #ffffff; /* Sections en blanc */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, background 0.3s;
+}
+
+.terms-section:hover {
+    background: #e9ecef;
+    transform: translateY(-5px);
+}
+
+.terms-section h2 {
+    font-size: 1.8rem;
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.terms-section p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Liens */
+.terms-section a {
+    color: #1abc9c;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.terms-section a:hover {
+    color: #16a085;
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 768px) {
+    .terms-banner h1 {
+        font-size: 2.2rem;
+    }
+
+    .terms-banner p {
+        font-size: 1rem;
+    }
+
+    .terms-container {
+        padding: 20px;
+    }
+
+    .terms-section {
+        padding: 15px;
+    }
+}
