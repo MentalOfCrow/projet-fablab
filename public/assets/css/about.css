@@ -1,0 +1,231 @@
+/* Importation de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles généraux */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0e0e0, #f4f4f4); /* Fond gris dégradé */
+    color: #333;
+}
+
+/* --- BANNIÈRE --- */
+.about-banner {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* "Bienvenue au FabLab" en blanc */
+.about-banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white; /* Texte en blanc */
+    text-shadow: none; /* Suppression de l'ombre pour meilleure lisibilité */
+}
+
+/* Texte sous le titre */
+.about-banner p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* --- CONTENEUR PRINCIPAL --- */
+.about-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-container:hover {
+    transform: scale(1.01);
+}
+
+/* --- TITRES --- */
+.about-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1e3c72;
+    margin-bottom: 30px;
+}
+
+/* --- VALEURS --- */
+.values {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.values h2 {
+    font-size: 2.2rem;
+    color: #1e3c72;
+    margin-bottom: 20px;
+}
+
+.value-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.value-card {
+    background: white;
+    color: #333;
+    padding: 20px;
+    width: 30%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-card i {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.value-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.value-card h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* --- ÉQUIPE --- */
+.team {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.team h2 {
+    font-size: 2.2rem;
+    color: #1e3c72;
+    margin-bottom: 20px;
+}
+
+.team-members {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.member {
+    background: white;
+    padding: 20px;
+    width: 280px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.member:hover {
+    transform: translateY(-5px);
+}
+
+.member h3 {
+    font-size: 1.3rem;
+    color: #1e3c72;
+    font-weight: bold;
+}
+
+.member p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* --- CONTACT --- */
+.contact {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 1.1rem;
+}
+
+.contact h2 {
+    font-size: 2rem;
+    color: #1e3c72;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin-bottom: 10px;
+}
+
+.contact a {
+    color: #1abc9c;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact a:hover {
+    color: #16a085;
+}
+
+.contact i {
+    margin-right: 8px;
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 768px) {
+    .about-banner h1 {
+        font-size: 2.2rem;
+    }
+
+    .about-banner p {
+        font-size: 1rem;
+    }
+
+    .value-card {
+        width: 80%;
+    }
+
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member {
+        width: 100%;
+    }
+}
