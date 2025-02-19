@@ -1,56 +1,130 @@
-body {
-    font-family: Arial, sans-serif;
+/* Réinitialisation de base */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #d4d4d4, #f4f4f4, #c4c4c4);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/* HEADER ET FOOTER OCCUPANT TOUTE LA LARGEUR */
+.header, .footer {
+    width: 100%;
+    background-color: #222;
+    color: white;
     text-align: center;
+    padding: 20px 0;
 }
 
-.home {
+.footer {
+    position: relative;
+    bottom: 0;
+}
+
+/* Conteneur principal prenant toute la hauteur */
+.container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* SECTION 1 - Contenu principal sur toute la largeur */
+.home-section-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
     padding: 50px;
+    margin: 20px 5%;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
 }
 
-h1 {
-    color: #333;
+.left-container {
+    width: 50%;
+    text-align: left;
+    padding: 20px;
 }
 
-.features {
+.right-container {
+    width: 50%;
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
 }
 
-.feature-box {
-    background: white;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
+.fablab-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* SECTION 2 - Prend toute la largeur */
+.home-section-2 {
+    background: linear-gradient(to bottom, #e0e0e0, #c4c4c4);
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin: 20px 5%;
+    flex-grow: 1;
+}
+
+.features-container {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.feature-box h2 {
-    color: #007BFF;
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.feature-box p {
-    color: #555;
-}
 .features-list {
-    list-style: none; /* Supprime les puces */
-    padding: 0; /* Supprime l'indentation */
-    margin: 0 auto; /* Centre la liste */
-    text-align: center; /* Centre le texte */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
 .features-list li {
-    padding: 5px 0;
-    font-size: 16px;
+    padding: 15px;
+    font-size: 18px;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
-/* Assurer que le contenu pousse le footer vers le bas */
+
+.features-list li:hover {
+    background: #007BFF;
+    color: white;
+    transform: scale(1.05);
+}
+
+.final-text {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #222;
+}
+
+/* Ajustements pour s'assurer que tout prend bien la place */
 .content {
-    flex: 1;
-    padding-bottom: 50px;
+    flex-grow: 1;
+    width: 100%;
 }
