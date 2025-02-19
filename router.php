@@ -5,13 +5,18 @@ session_start();
 $is_logged_in = isset($_SESSION['user_id']);
 $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 
-// Récupération de l'URI demandée
-$request_uri = trim($_SERVER['REQUEST_URI'], '/');
+// Récupération et nettoyage de l'URI demandée
+$request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-// Si aucune route n'est spécifiée, on affiche la page d'accueil
+// Si aucune route n'est spécifiée, afficher la page d'accueil
 if ($request_uri === '' || $request_uri === 'index') {
-    require_once 'backend/views/index.php';
+    require_once __DIR__ . '/backend/views/index.php';
     exit;
+}
+
+// Vérification si c'est un fichier statique (CSS, JS, images)
+if (file_exists(__DIR__ . '/' . $request_uri) && is_file(__DIR__ . '/' . $request_uri)) {
+    return false;
 }
 
 // Définition des routes accessibles
@@ -21,30 +26,21 @@ $routes = [
     'inscription' => 'backend/views/inscription.php',
     'dashboard-user' => 'backend/views/dashboard-user.php',
     'dashboard-admin' => 'backend/views/dashboard-admin.php',
+    'about' => 'backend/views/about.php',
+    'help' => 'backend/views/help.php',
+    'faq' => 'backend/views/faq.php',
+    'contact' => 'backend/views/contact.php',
+    'terms' => 'backend/views/terms.php',
+    'privacy' => 'backend/views/privacy.php',
 ];
 
-// Routes protégées nécessitant une connexion
-$protected_routes = ['dashboard-user', 'dashboard-admin'];
-
-// Vérification de l'accès aux pages protégées
-if (in_array($request_uri, $protected_routes) && !$is_logged_in) {
-    header("Location: /login");
-    exit;
-}
-
-// Vérification de l'accès admin
-if ($request_uri === 'dashboard-admin' && !$is_admin) {
-    header("Location: /dashboard-user");
-    exit;
-}
-
-// Redirection vers la bonne vue si la route existe
+// Vérification et inclusion des fichiers de vue
 if (array_key_exists($request_uri, $routes)) {
-    require_once $routes[$request_uri];
+    require_once __DIR__ . '/' . $routes[$request_uri];
     exit;
 }
 
-// Page non trouvée (404)
+// Gestion des erreurs 404
 http_response_code(404);
 echo "<h1>404 - Page non trouvée</h1>";
 ?>
