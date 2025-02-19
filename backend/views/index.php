@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="/public/assets/css/footer.css">
 </head>
 <body>
-<?php include '../../backend/includes/header.php'; ?>
+<?php include_once __DIR__ . '/../includes/header.php'; ?>
     <!-- CONTENU PRINCIPAL -->
     <main>
         <section class="home">
@@ -25,6 +25,6 @@ if (session_status() == PHP_SESSION_NONE) {
             
         </section>
     </main>
-    <?php include '../../backend/includes/footer.php'; ?>
+    <?php include_once __DIR__ . '/../includes/footer.php'; ?>
 </body>
 </html>
