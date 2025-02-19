@@ -15,22 +15,18 @@ html, body {
 }
 
 /* HEADER ET FOOTER OCCUPANT TOUTE LA LARGEUR */
-.header, .footer {
+/* .header, .footer {
     width: 100%;
     background-color: #222;
     color: white;
     text-align: center;
-<<<<<<< Updated upstream
-    padding: 20px 0;
-=======
     height: auto;
->>>>>>> Stashed changes
-}
+} */
 
-.footer {
+/* .footer {
     position: relative;
     bottom: 0;
-}
+} */
 
 /* Conteneur principal prenant toute la hauteur */
 .container {
