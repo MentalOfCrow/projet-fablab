@@ -5,12 +5,12 @@
                 <img src="/public/assets/images/logo-FabLab.png" alt="FabLab Logo">
             </div>
             <div class="footer-links">
-                <a href="/about.php">À propos</a>
-                <a href="/faq.php">FAQ</a>
-                <a href="/help.php">Aide</a>
-                <a href="/contact.php">Contact</a>
-                <a href="/terms.php">Mentions légales</a>
-                <a href="/privacy.php">Politique de confidentialité</a>
+                <a href="/about">À propos</a>
+                <a href="/faq">FAQ</a>
+                <a href="/help">Aide</a>
+                <a href="/contact">Contact</a>
+                <a href="/terms">Mentions légales</a>
+                <a href="/privacy">Politique de confidentialité</a>
             </div>
         </div>
 
