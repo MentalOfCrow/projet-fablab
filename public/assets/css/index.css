@@ -38,3 +38,14 @@ h1 {
 .feature-box p {
     color: #555;
 }
+.features-list {
+    list-style: none; /* Supprime les puces */
+    padding: 0; /* Supprime l'indentation */
+    margin: 0 auto; /* Centre la liste */
+    text-align: center; /* Centre le texte */
+}
+
+.features-list li {
+    padding: 5px 0;
+    font-size: 16px;
+}
