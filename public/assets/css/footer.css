@@ -1,9 +1,28 @@
+/* Assurez-vous que le body et le HTML prennent toute la hauteur */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteneur principal pour pousser le footer en bas */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer toujours en bas */
 footer {
     background-color: #222;
     color: #fff;
     padding: 20px 0;
     text-align: center;
     font-size: 14px;
+    width: 100%;
+    margin-top: auto;
 }
 
 .footer-container {
