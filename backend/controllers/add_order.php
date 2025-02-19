@@ -1,42 +1,53 @@
 <?php
 session_start();
-include '../db/config.php';
+include '../db/config.php'; // Connexion à la base de données
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION["user_id"])) {
-    header("Location: ../login.php");
+    header("Location: ../views/login.php");
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $utilisateur_id = $_SESSION["user_id"];
     $nom_commande = $_POST["nom_commande"];
     $couleur = $_POST["couleur"];
     $hauteur = $_POST["hauteur"];
     $longueur = $_POST["longueur"];
     $largeur = $_POST["largeur"];
+    $utilisateur_id = $_SESSION["user_id"]; 
 
-    // Vérifier que le fichier STL est bien uploadé
+    // 📂 Définir le bon chemin d'upload
+    $upload_dir = __DIR__ . "/../../public/uploads/"; // 🔥 Assure-toi que ce dossier existe
+
+    // Vérification du fichier STL
     if (isset($_FILES["fichier_stl"]) && $_FILES["fichier_stl"]["error"] == 0) {
-        $fichier = $_FILES["fichier_stl"];
-        $fichierName = time() . "_" . basename($fichier["name"]);
-        $fichierPath = "../../public/uploads/" . $fichierName;
+        $file_name = time() . "_" . basename($_FILES["fichier_stl"]["name"]);
+        $target_file = $upload_dir . $file_name; // 🔥 Correction du chemin absolu
 
-        // Déplacer le fichier vers le dossier uploads
-        if (move_uploaded_file($fichier["tmp_name"], $fichierPath)) {
-            // Insérer la commande dans la base de données
-            $stmt = $pdo->prepare("INSERT INTO commandes (utilisateur_id, nom_commande, couleur, hauteur, longueur, largeur, fichier_stl) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            if ($stmt->execute([$utilisateur_id, $nom_commande, $couleur, $hauteur, $longueur, $largeur, $fichierName])) {
-                header("Location: ../views/dashboard-admin.php?message=Commande ajoutée");
+        // ✅ Vérifier que le dossier existe, sinon le créer
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true); // 🔥 Création du dossier avec les bons droits
+        }
+
+        // ✅ Déplacement sécurisé du fichier
+        if (move_uploaded_file($_FILES["fichier_stl"]["tmp_name"], $target_file)) {
+            $stmt = $pdo->prepare("INSERT INTO commandes (nom_commande, couleur, hauteur, longueur, largeur, fichier_stl, utilisateur_id, statut, date_creation) 
+                                   VALUES (?, ?, ?, ?, ?, ?, ?, 'en attente', NOW())");
+            $result = $stmt->execute([$nom_commande, $couleur, $hauteur, $longueur, $largeur, $file_name, $utilisateur_id]);
+
+            if ($result) {
+                // 🔀 Redirection en fonction du rôle
+                $redirect_page = ($_SESSION["role"] === "admin") ? "dashboard-admin.php" : "dashboard-user.php";
+                header("Location: ../views/$redirect_page?message=Commande ajoutée avec succès");
                 exit();
             } else {
-                echo "Erreur lors de l'ajout.";
+                die("❌ Erreur SQL : " . implode(" - ", $stmt->errorInfo()));
             }
         } else {
-            echo "Erreur lors du téléchargement du fichier.";
+            die("❌ Impossible de déplacer le fichier : " . $_FILES["fichier_stl"]["tmp_name"]);
         }
     } else {
-        echo "Aucun fichier STL envoyé.";
+        die("❌ Fichier STL invalide ou erreur d'upload.");
     }
 }
 ?>

@@ -1,10 +1,9 @@
 <?php
-session_start();
 include '../db/config.php';
 
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
+session_start();
+if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
+    header("Location: ../views/login.php");
     exit();
 }
 
@@ -142,57 +141,7 @@ $user = $stmt->fetch();
 
 
     <div id="encours" class="tab-content">
-    <h2>Impressions en cours</h2>
-    
-    <div class="order-list">
-        <?php
-        $stmt = $pdo->query("
-            SELECT commandes.*, imprimantes.nom AS imprimante_nom 
-            FROM commandes
-            JOIN imprimantes ON commandes.imprimante_id = imprimantes.id
-            WHERE commandes.statut = 'en cours'
-            ORDER BY commandes.heure_debut DESC
-        ");
-
-        while ($row = $stmt->fetch()) {
-            $heure_debut = strtotime($row['heure_debut']);
-            $heure_fin = $heure_debut + ($row['duree'] * 60);
-            $temps_restant = max(0, $heure_fin - time());
-            $minutes_restantes = floor($temps_restant / 60);
-            $secondes_restantes = $temps_restant % 60;
-            $total_time = $row['duree'] * 60; // Temps total en secondes
-            ?>
-
-            <div class='order-card'>
-                <div class='order-info'>
-                    <h3><?php echo htmlspecialchars($row['nom_commande']); ?></h3>
-                    <p><strong>Imprimante :</strong> <?php echo htmlspecialchars($row['imprimante_nom']); ?></p>
-                    <p><strong>Temps restant :</strong> 
-                        <span class='timer' id='timer-<?php echo $row['id']; ?>' data-time='<?php echo $temps_restant; ?>'>
-                            <?php echo $minutes_restantes; ?> min <?php echo $secondes_restantes; ?> sec
-                        </span>
-                    </p>
-
-                    <!-- 🔵 Barre de progression -->
-                    <div class='print-progress'>
-                        <div class='progress-bar' 
-                            id='progress-bar-<?php echo $row['id']; ?>' 
-                            data-order-id='<?php echo $row['id']; ?>'
-                            data-total-time='<?php echo $total_time; ?>'
-                            data-start-time='<?php echo $heure_debut; ?>'
-                            style='width: 0%; height: 10px; background-color: gray; transition: width 1s linear;'>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
-</div>
-
-    <div id="terminees" class="tab-content">
-        <h2>Impressions terminées</h2>
+        <h2>Impressions en cours</h2>
         
         <div class="order-list">
             <?php
@@ -200,22 +149,101 @@ $user = $stmt->fetch();
                 SELECT commandes.*, imprimantes.nom AS imprimante_nom 
                 FROM commandes
                 JOIN imprimantes ON commandes.imprimante_id = imprimantes.id
-                WHERE commandes.statut = 'terminé'
+                WHERE commandes.statut = 'en cours'
                 ORDER BY commandes.heure_debut DESC
             ");
 
             while ($row = $stmt->fetch()) {
+                $heure_debut = strtotime($row['heure_debut']);
+                $heure_fin = $heure_debut + ($row['duree'] * 60);
+                $temps_restant = max(0, $heure_fin - time());
+                $minutes_restantes = floor($temps_restant / 60);
+                $secondes_restantes = $temps_restant % 60;
+                $total_time = $row['duree'] * 60; // Temps total en secondes
+                ?>
+
+                <div class='order-card'>
+                    <div class='order-info'>
+                        <h3><?php echo htmlspecialchars($row['nom_commande']); ?></h3>
+                        <p><strong>Imprimante :</strong> <?php echo htmlspecialchars($row['imprimante_nom']); ?></p>
+                        <p><strong>Temps restant :</strong> 
+                            <span class='timer' id='timer-<?php echo $row['id']; ?>' data-time='<?php echo $temps_restant; ?>'>
+                                <?php echo $minutes_restantes; ?> min <?php echo $secondes_restantes; ?> sec
+                            </span>
+                        </p>
+
+                        <!-- 🔵 Barre de progression -->
+                        <div class='print-progress'>
+                            <div class='progress-bar' 
+                                id='progress-bar-<?php echo $row['id']; ?>' 
+                                data-order-id='<?php echo $row['id']; ?>'
+                                data-total-time='<?php echo $total_time; ?>'
+                                data-start-time='<?php echo $heure_debut; ?>'
+                                style='width: 0%; height: 10px; background-color: gray; transition: width 1s linear;'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+
+    <div id="terminees" class="tab-content">
+        <h2>Impressions terminées</h2>
+
+        <div class="order-list">
+            <?php
+            // Nombre de commandes par page
+            $limit = 6;
+            $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
+            $offset = ($page - 1) * $limit;
+
+            // Récupérer le nombre total de commandes terminées
+            $stmtCount = $pdo->query("SELECT COUNT(*) FROM commandes WHERE statut = 'terminé'");
+            $totalOrders = $stmtCount->fetchColumn();
+            $totalPages = ceil($totalOrders / $limit);
+
+            // Récupérer les commandes avec pagination
+            $stmt = $pdo->prepare("
+                SELECT commandes.*, imprimantes.nom AS imprimante_nom 
+                FROM commandes
+                JOIN imprimantes ON commandes.imprimante_id = imprimantes.id
+                WHERE commandes.statut = 'terminé'
+                ORDER BY commandes.heure_debut DESC
+                LIMIT :limit OFFSET :offset
+            ");
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+
+            while ($row = $stmt->fetch()) {
                 echo "<div class='order-card'>
                         <div class='order-info'>
-                            <h3>{$row['nom_commande']}</h3>
-                            <p><strong>Imprimante :</strong> {$row['imprimante_nom']}</p>
+                            <h3>" . htmlspecialchars($row['nom_commande']) . "</h3>
+                            <p><strong>Imprimante :</strong> " . htmlspecialchars($row['imprimante_nom']) . "</p>
                             <p><strong>Statut :</strong> ✅ Terminé</p>
                         </div>
                     </div>";
             }
             ?>
         </div>
+
+        <!-- 🔄 Pagination -->
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?php echo $page - 1; ?>" class="pagination-btn">⬅ Précédent</a>
+            <?php endif; ?>
+
+            <span class="current-page">Page <?php echo $page; ?> sur <?php echo $totalPages; ?></span>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?php echo $page + 1; ?>" class="pagination-btn">Suivant ➡</a>
+            <?php endif; ?>
+        </div>
     </div>
+
 
 
     <div id="imprimantes" class="tab-content">
@@ -250,8 +278,18 @@ $user = $stmt->fetch();
                     <div class='printer-info'>
                         <h3>{$row['nom']}</h3>
                         <p>Type : {$row['type']}</p>
-                        <p class='etat' style='background-color: $etatColor;'>{$row['etat']}</p>";
+                        <p class='etat' style='background-color: $etatColor;'>{$row['etat']} . </p>
 
+                        <!-- 🔵 Sélecteur d'état pour les admins -->
+                        <form method='POST' action='../controllers/update_printer_status.php' class='status-form'>
+                            <input type='hidden' name='printer_id' value='{$row['id']}'>
+                            <select name='etat' class='status-select' onchange='this.form.submit()'>
+                                <option value='libre' " . ($row['etat'] == 'libre' ? 'selected' : '') . ">Libre</option>
+                                <option value='en impression' " . ($row['etat'] == 'en impression' ? 'selected' : '') . ">En impression</option>
+                                <option value='maintenance' " . ($row['etat'] == 'maintenance' ? 'selected' : '') . ">Maintenance</option>
+                            </select>
+                        </form>";
+                        
             // 🔥 Ajouter le timer et la barre de progression si l'imprimante est en impression
             if ($row['etat'] == 'en impression') {
                 $stmtCommande = $pdo->prepare("

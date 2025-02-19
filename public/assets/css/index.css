@@ -20,7 +20,11 @@ html, body {
     background-color: #222;
     color: white;
     text-align: center;
+<<<<<<< Updated upstream
     padding: 20px 0;
+=======
+    height: auto;
+>>>>>>> Stashed changes
 }
 
 .footer {

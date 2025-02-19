@@ -22,6 +22,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 <a href="/backend/views/index.php" class="logo">
                     <img src="/public/assets/images/logo-FabLab.png" alt="FabLab Logo">
                 </a>
+
+                <div class="header-content">
+                    <div id="notification-area"></div> <!-- 🔹 Ici pour bien le centrer -->
+                </div>
                 
                 <!-- Bouton Connexion / Déconnexion -->
                 <div class="auth-btn">

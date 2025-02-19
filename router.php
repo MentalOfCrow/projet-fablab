@@ -23,7 +23,6 @@ if (file_exists(__DIR__ . '/' . $request_uri) && is_file(__DIR__ . '/' . $reques
 $routes = [
     'login' => 'backend/views/login.php',
     'logout' => 'backend/views/logout.php',
-    'inscription' => 'backend/views/inscription.php',
     'dashboard-user' => 'backend/views/dashboard-user.php',
     'dashboard-admin' => 'backend/views/dashboard-admin.php',
     'about' => 'backend/views/about.php',
