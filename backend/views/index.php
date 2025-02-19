@@ -16,8 +16,9 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 <body>
 
+<?php include_once __DIR__ . '/../includes/header.php'; ?>
+
 <div class="container">
-    <?php include_once __DIR__ . '/../includes/header.php'; ?>
 
     <!-- CONTENU PRINCIPAL -->
     <main class="content">
