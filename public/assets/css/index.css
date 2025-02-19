@@ -2,18 +2,18 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom, #d4d4d4, #f4f4f4, #c4c4c4);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+    overflow-x: hidden;
 }
 
+<<<<<<< Updated upstream
 /* HEADER ET FOOTER OCCUPANT TOUTE LA LARGEUR */
 /* .header, .footer {
     width: 100%;
@@ -27,15 +27,15 @@ html, body {
     position: relative;
     bottom: 0;
 } */
+=======
+>>>>>>> Stashed changes
 
 /* Conteneur principal prenant toute la hauteur */
 .container {
-    width: 100%;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
+    height: auto;
 }
 
 /* SECTION 1 - Contenu principal sur toute la largeur */
@@ -44,41 +44,41 @@ html, body {
     justify-content: space-between;
     align-items: center;
     background: white;
-    padding: 50px;
-    margin: 20px 5%;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    width: 90%;
+    width: 100%;
 }
 
 .left-container {
     width: 50%;
     text-align: left;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .right-container {
     width: 50%;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .fablab-image {
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 12px 0 0 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* SECTION 2 - Prend toute la largeur */
 .home-section-2 {
     background: linear-gradient(to bottom, #e0e0e0, #c4c4c4);
-    padding: 50px;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    margin: 20px 5%;
+    width: 100%;
     flex-grow: 1;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .features-container {
@@ -125,6 +125,6 @@ html, body {
 
 /* Ajustements pour s'assurer que tout prend bien la place */
 .content {
-    flex-grow: 1;
+    height: auto;
     width: 100%;
 }
