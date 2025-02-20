@@ -8,35 +8,46 @@ if (!isset($_SESSION["user_id"])) {
     exit();
 }
 
-// Vérifier que le formulaire a bien été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $commande_id = $_POST["commande_id"];
-    $nom_commande = trim($_POST["nom_commande"]);
-    $couleur = $_POST["couleur"];
-    $hauteur = $_POST["hauteur"];
-    $longueur = $_POST["longueur"];
-    $largeur = $_POST["largeur"];
+// Vérifier si les champs sont bien envoyés
+if (!isset($_POST['commande_id'], $_POST['nom_commande'], $_POST['couleur'], $_POST['hauteur'], $_POST['longueur'], $_POST['largeur'])) {
+    die("Tous les champs sont requis.");
+}
 
-    // Vérifier si la commande appartient bien à l'utilisateur et qu'elle est encore en attente
-    $stmt = $pdo->prepare("SELECT id FROM commandes WHERE id = ? AND utilisateur_id = ? AND statut = 'en attente'");
-    $stmt->execute([$commande_id, $_SESSION["user_id"]]);
+// Récupérer les données
+$commande_id = intval($_POST['commande_id']);
+$nom_commande = trim($_POST['nom_commande']);
+$couleur = trim($_POST['couleur']);
+$hauteur = floatval($_POST['hauteur']);
+$longueur = floatval($_POST['longueur']);
+$largeur = floatval($_POST['largeur']);
 
-    if ($stmt->rowCount() === 0) {
-        header("Location: ../views/dashboard-user.php?error=Modification impossible, commande non en attente.");
-        exit();
-    }
+// Vérification de la validité des valeurs
+if (empty($nom_commande) || !in_array($couleur, ['Rouge', 'Bleu', 'Vert', 'Jaune', 'Noir', 'Blanc', 'Gris','Orange','Rose','Violet',])) {
+    die("Des erreurs dans les données soumises.");
+}
 
-    // Mise à jour de la commande
-    $stmt = $pdo->prepare("UPDATE commandes SET nom_commande = ?, couleur = ?, hauteur = ?, longueur = ?, largeur = ? WHERE id = ?");
-    if ($stmt->execute([$nom_commande, $couleur, $hauteur, $longueur, $largeur, $commande_id])) {
-        header("Location: ../views/dashboard-user.php?message=Modification réussie");
-        exit();
-    } else {
-        header("Location: ../views/modifier_commande.php?commande_id=$commande_id&error=Erreur lors de la modification");
-        exit();
-    }
+// Vérifier que la commande appartient à l'utilisateur et est bien en attente
+$stmt = $pdo->prepare("SELECT * FROM commandes WHERE id = ? AND utilisateur_id = ? AND statut = 'en attente'");
+$stmt->execute([$commande_id, $_SESSION["user_id"]]);
+$commande = $stmt->fetch();
+
+if (!$commande) {
+    die("Erreur : Commande introuvable ou non modifiable.");
+}
+
+// Mettre à jour la commande
+$stmt = $pdo->prepare("
+    UPDATE commandes 
+    SET nom_commande = ?, couleur = ?, hauteur = ?, longueur = ?, largeur = ? 
+    WHERE id = ?
+");
+
+$result = $stmt->execute([$nom_commande, $couleur, $hauteur, $longueur, $largeur, $commande_id]);
+
+if (!$result) {
+    die("Erreur SQL : " . implode(" - ", $stmt->errorInfo()));
 } else {
-    header("Location: ../views/dashboard-user.php");
+    header("Location: ../views/dashboard-user.php?message=Commande modifiée avec succès");
     exit();
 }
 ?>

@@ -42,28 +42,37 @@ if (!$commande) {
 <div class="commande-form-container">
     <h1>Modifier la commande : <?php echo htmlspecialchars($commande['nom_commande']); ?></h1>
 
-    <form class="commande-form" action="traiter_modification.php" method="POST">
+    <form class="commande-form" action="../controllers/traiter_modification.php" method="POST">
         <label for="nom_commande">Nom de la commande :</label>
-        <input type="text" id="nom_commande" name="nom_commande" value="dino 7" required>
+        <input type="text" id="nom_commande" name="nom_commande" value="<?php echo htmlspecialchars($commande['nom_commande']); ?>" required>
 
         <label for="couleur">Couleur :</label>
         <select id="couleur" name="couleur">
-            <option value="Rouge" selected>Rouge</option>
-            <option value="Bleu">Bleu</option>
-            <option value="Vert">Vert</option>
+            <option value="Rouge" <?php if ($commande['couleur'] == 'Rouge') echo 'selected'; ?>>Rouge</option>
+            <option value="Bleu" <?php if ($commande['couleur'] == 'Bleu') echo 'selected'; ?>>Bleu</option>
+            <option value="Vert" <?php if ($commande['couleur'] == 'Vert') echo 'selected'; ?>>Vert</option>
+            <option value="Jaune" <?php if ($commande['couleur'] == 'Jaune') echo 'selected'; ?>>Jaune</option>
+            <option value="Noir" <?php if ($commande['couleur'] == 'Noir') echo 'selected'; ?>>Noir</option>
+            <option value="Blanc" <?php if ($commande['couleur'] == 'Blanc') echo 'selected'; ?>>Blanc</option>
+            <option value="Gris" <?php if ($commande['couleur'] == 'Gris') echo 'selected'; ?>>Gris</option>
+            <option value="Orange" <?php if ($commande['couleur'] == 'Orange') echo 'selected'; ?>>Orange</option>
+            <option value="Rose" <?php if ($commande['couleur'] == 'Rose') echo 'selected'; ?>>Rose</option>
+            <option value="Violet" <?php if ($commande['couleur'] == 'Violet') echo 'selected'; ?>>Violet</option>
         </select>
 
         <label for="hauteur">Hauteur (mm) :</label>
-        <input type="number" id="hauteur" name="hauteur" value="100.00" step="0.1" required>
+        <input type="number" id="hauteur" name="hauteur" value="<?php echo htmlspecialchars($commande['hauteur']); ?>" step="0.1" required>
 
         <label for="longueur">Longueur (mm) :</label>
-        <input type="number" id="longueur" name="longueur" value="50.00" step="0.1" required>
+        <input type="number" id="longueur" name="longueur" value="<?php echo htmlspecialchars($commande['longueur']); ?>" step="0.1" required>
 
         <label for="largeur">Largeur (mm) :</label>
-        <input type="number" id="largeur" name="largeur" value="50.00" step="0.1" required>
+        <input type="number" id="largeur" name="largeur" value="<?php echo htmlspecialchars($commande['largeur']); ?>" step="0.1" required>
 
         <button type="submit" class="submit-button">Enregistrer les modifications</button>
         <a href="dashboard-user.php" class="cancel-link">Annuler</a>
+
+        <input type="hidden" name="commande_id" value="<?php echo $commande['id']; ?>">
     </form>
 </div>
 <?php include '../includes/footer.php'; ?>
