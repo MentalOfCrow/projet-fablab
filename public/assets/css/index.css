@@ -13,26 +13,6 @@ html, body {
     overflow-x: hidden;
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-/* HEADER ET FOOTER OCCUPANT TOUTE LA LARGEUR */
-/* .header, .footer {
-    width: 100%;
-    background-color: #222;
-    color: white;
-    text-align: center;
-    height: auto;
-} */
-
-/* .footer {
-    position: relative;
-    bottom: 0;
-} */
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-
 /* Conteneur principal prenant toute la hauteur */
 .container {
     display: flex;
