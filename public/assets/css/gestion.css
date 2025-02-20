@@ -1,0 +1,50 @@
+.container{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.back-btn:hover {
+    background-color: #555;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+/* Table des utilisateurs */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

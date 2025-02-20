@@ -1,0 +1,142 @@
+.container{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.back-btn:hover {
+    background-color: #555;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+/* Conteneur du formulaire */
+.add-printer-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Style des labels */
+.add-printer-form label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* Style des champs de saisie et de sélection */
+.add-printer-form input,
+.add-printer-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Bouton d'ajout */
+.add-printer-form button {
+    background-color: #bbb;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-printer-form button:hover {
+    background-color: #333;
+}
+
+/* Liste des imprimantes */
+.printer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card de l'imprimante */
+.printer-card {
+    display: flex;
+    width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.printer-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+.printer-info {
+    padding: 10px;
+    flex: 1;
+}
+
+.printer-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.etat {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    width: 120px;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+.impression-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.print-progress {
+    width: 100%;
+    background-color: #ddd; /* Gris clair */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #ff9800; /* Orange pour l'impression en cours */
+    transition: width 1s linear;
+}

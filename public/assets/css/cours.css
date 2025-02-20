@@ -1,0 +1,135 @@
+.container{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.back-btn:hover {
+    background-color: #555;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+.order-list1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card de commande */
+.order-card1 {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+/* Informations de commande */
+.order-info1 {
+    text-align: left;
+}
+
+.order-info1 h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.order-info1 p {
+    margin: 5px 0;
+}
+
+/* Statut */
+.status {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    width: 100px;
+}
+
+.status.waiting {
+    background-color: orange;
+}
+
+/* Style pour la date de commande */
+.order-info1 p strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Conteneur du formulaire de lancement */
+.order-info1 form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Alignement des labels et champs */
+.order-info1 label {
+    font-weight: bold;
+}
+
+/* Champs de sélection et saisie */
+.order-info1 select,
+.order-info1 input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Bouton "Lancer l'impression" */
+.order-info1 button {
+    background-color: #bbb; /* Vert */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.order-info1 button:hover {
+    background-color: #28a745; /* Vert plus foncé au survol */
+}
+
+.print-progress {
+    width: 100%;
+    background-color: #dddddd; /* Gris clair */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #ff9800; /* Orange pour l'impression en cours */
+    transition: width 1s linear;
+}

@@ -23,32 +23,47 @@ header {
     margin: 0 auto;
 }
 
-/* Bouton Connexion */
-.login-btn {
-    background-color: #007BFF;
+.connexion-btn a, .user-buttons a {
     color: white;
-    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
+    transition: background-color 0.3s;
 }
 
-.login-btn:hover {
-    background-color: #0056b3;
+.connexion-btn a:hover, .user-buttons a:hover {
+    background-color: #666;
 }
 
-/* Bouton Déconnexion */
+.user-buttons {
+    display: flex; /* Utilisation de flexbox */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    justify-content: flex-start; /* Aligne les éléments à gauche */
+    gap: 10px; /* Espacement entre les boutons */
+}
+
+.user-buttons a {
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    white-space: nowrap; /* Empêche le texte de se casser */
+    flex-shrink: 0; /* Empêche les boutons de se réduire */
+}
+
+.user-buttons a:hover {
+    background-color: #555;
+}
+
+/* Bouton de déconnexion */
 .logout-btn {
-    background-color: #FF4C4C;
     color: white;
-    padding: 10px 20px;
     text-decoration: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #444;
     border-radius: 5px;
-    font-weight: bold;
-    display: inline-block;
+    transition: background-color 0.3s;
 }
 
 .logout-btn:hover {
-    background-color: #CC0000;
+    background-color: #666;
 }

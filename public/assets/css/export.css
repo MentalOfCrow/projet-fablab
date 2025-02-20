@@ -1,0 +1,49 @@
+.container{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.back-btn:hover {
+    background-color: #555;
+}
+
+h2{
+    margin-bottom: 20px;
+}
+
+/* Formulaire d'export */
+.export-form {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+/* Boutons d'export */
+.export-form button {
+    background-color: #bbb;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.export-form button:hover {
+    background-color: #333;
+}
