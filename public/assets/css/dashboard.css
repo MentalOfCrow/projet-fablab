@@ -125,7 +125,7 @@ html, body {
 /*###########################*/
 /*#########ATTENTE###########*/
 /* Liste des commandes */
-.order-list {
+.order-list1 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -133,7 +133,7 @@ html, body {
 }
 
 /* Card de commande */
-.order-card {
+.order-card1 {
     display: flex;
     flex-direction: column;
     width: 350px;
@@ -146,16 +146,16 @@ html, body {
 }
 
 /* Informations de commande */
-.order-info {
+.order-info1 {
     text-align: left;
 }
 
-.order-info h3 {
+.order-info1 h3 {
     margin-top: 0;
     font-size: 18px;
 }
 
-.order-info p {
+.order-info1 p {
     margin: 5px 0;
 }
 
@@ -174,13 +174,13 @@ html, body {
 }
 
 /* Style pour la date de commande */
-.order-info p strong {
+.order-info1 p strong {
     font-weight: bold;
     color: #333;
 }
 
 /* Conteneur du formulaire de lancement */
-.order-info form {
+.order-info1 form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -188,13 +188,13 @@ html, body {
 }
 
 /* Alignement des labels et champs */
-.order-info label {
+.order-info1 label {
     font-weight: bold;
 }
 
 /* Champs de sélection et saisie */
-.order-info select,
-.order-info input[type="number"] {
+.order-info1 select,
+.order-info1 input[type="number"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -203,7 +203,7 @@ html, body {
 }
 
 /* Bouton "Lancer l'impression" */
-.order-info button {
+.order-info1 button {
     background-color: #bbb; /* Vert */
     color: white;
     padding: 8px 15px;
@@ -214,7 +214,7 @@ html, body {
     transition: background 0.3s;
 }
 
-.order-info button:hover {
+.order-info1 button:hover {
     background-color: #28a745; /* Vert plus foncé au survol */
 }
 

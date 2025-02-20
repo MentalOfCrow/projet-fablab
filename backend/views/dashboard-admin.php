@@ -88,7 +88,7 @@ $user = $stmt->fetch();
     <div id="attente" class="tab-content">
         <h2>Commandes en attente</h2>
         
-        <div class="order-list">
+        <div class="order-list1">
             <?php
             // Récupérer les imprimantes disponibles (état = libre)
             $stmtImprimantes = $pdo->query("SELECT id, nom FROM imprimantes WHERE etat = 'libre'");
@@ -105,8 +105,8 @@ $user = $stmt->fetch();
 
             while ($row = $stmt->fetch()) {
                 $date_formatee = date("d/m/Y H:i", strtotime($row['date_creation']));
-                echo "<div class='order-card'>
-                        <div class='order-info'>
+                echo "<div class='order-card1'>
+                        <div class='order-info1'>
                             <h3>{$row['nom_commande']}</h3>
                             <p><strong>Client :</strong> {$row['fullname']}</p>
                             <p><strong>Couleur :</strong> {$row['couleur']}</p>
@@ -143,7 +143,7 @@ $user = $stmt->fetch();
     <div id="encours" class="tab-content">
         <h2>Impressions en cours</h2>
         
-        <div class="order-list">
+        <div class="order-list1">
             <?php
             $stmt = $pdo->query("
                 SELECT commandes.*, imprimantes.nom AS imprimante_nom 
@@ -162,8 +162,8 @@ $user = $stmt->fetch();
                 $total_time = $row['duree'] * 60; // Temps total en secondes
                 ?>
 
-                <div class='order-card'>
-                    <div class='order-info'>
+                <div class='order-card1'>
+                    <div class='order-info1'>
                         <h3><?php echo htmlspecialchars($row['nom_commande']); ?></h3>
                         <p><strong>Imprimante :</strong> <?php echo htmlspecialchars($row['imprimante_nom']); ?></p>
                         <p><strong>Temps restant :</strong> 
@@ -193,7 +193,7 @@ $user = $stmt->fetch();
     <div id="terminees" class="tab-content">
         <h2>Impressions terminées</h2>
 
-        <div class="order-list">
+        <div class="order-list1">
             <?php
             // Nombre de commandes par page
             $limit = 6;
@@ -219,8 +219,8 @@ $user = $stmt->fetch();
             $stmt->execute();
 
             while ($row = $stmt->fetch()) {
-                echo "<div class='order-card'>
-                        <div class='order-info'>
+                echo "<div class='order-card1'>
+                        <div class='order-info1'>
                             <h3>" . htmlspecialchars($row['nom_commande']) . "</h3>
                             <p><strong>Imprimante :</strong> " . htmlspecialchars($row['imprimante_nom']) . "</p>
                             <p><strong>Statut :</strong> ✅ Terminé</p>
@@ -267,64 +267,70 @@ $user = $stmt->fetch();
         </form>
 
         <div class="printer-list">
-        <?php
-        $stmt = $pdo->query("SELECT * FROM imprimantes");
-        while ($row = $stmt->fetch()) {
-            $etatColor = ($row['etat'] == 'libre') ? 'green' : (($row['etat'] == 'en impression') ? 'orange' : 'red');
-            $photoPath = "/public/uploads/{$row['photo']}";
+            <?php
+            $stmt = $pdo->query("SELECT * FROM imprimantes");
+            while ($row = $stmt->fetch()) {
+                $etatColor = ($row['etat'] == 'libre') ? 'green' : (($row['etat'] == 'en impression') ? 'orange' : 'red');
+                $photoPath = "/public/uploads/{$row['photo']}";
 
-            echo "<div class='printer-card'>
-                    <img src='$photoPath' alt='{$row['nom']}' onerror=\"this.src='/public/images/default-printer.png';\">
-                    <div class='printer-info'>
-                        <h3>{$row['nom']}</h3>
-                        <p>Type : {$row['type']}</p>
-                        <p class='etat' style='background-color: $etatColor;'>{$row['etat']} . </p>
+                echo "<div class='printer-card'>
+                        <img src='$photoPath' alt='{$row['nom']}' onerror=\"this.src='/public/images/default-printer.png';\">
+                        <div class='printer-info'>
+                            <h3>{$row['nom']}</h3>
+                            <p>Type : {$row['type']}</p>
+                            <p class='etat' style='background-color: $etatColor;'>{$row['etat']}</p>
 
-                        <!-- 🔵 Sélecteur d'état pour les admins -->
-                        <form method='POST' action='../controllers/update_printer_status.php' class='status-form'>
-                            <input type='hidden' name='printer_id' value='{$row['id']}'>
-                            <select name='etat' class='status-select' onchange='this.form.submit()'>
-                                <option value='libre' " . ($row['etat'] == 'libre' ? 'selected' : '') . ">Libre</option>
-                                <option value='en impression' " . ($row['etat'] == 'en impression' ? 'selected' : '') . ">En impression</option>
-                                <option value='maintenance' " . ($row['etat'] == 'maintenance' ? 'selected' : '') . ">Maintenance</option>
-                            </select>
-                        </form>";
-                        
-            // 🔥 Ajouter le timer et la barre de progression si l'imprimante est en impression
-            if ($row['etat'] == 'en impression') {
-                $stmtCommande = $pdo->prepare("
-                    SELECT * FROM commandes 
-                    WHERE imprimante_id = ? AND statut = 'en cours'
-                    ORDER BY heure_debut DESC LIMIT 1
-                ");
-                $stmtCommande->execute([$row['id']]);
-                $commande = $stmtCommande->fetch();
+                            <!-- 🔵 Sélecteur d'état pour les admins -->
+                            <form method='POST' action='../controllers/update_printer_status.php' class='status-form'>
+                                <input type='hidden' name='printer_id' value='{$row['id']}'>
+                                <select name='etat' class='status-select' onchange='this.form.submit()'>
+                                    <option value='libre' " . ($row['etat'] == 'libre' ? 'selected' : '') . ">Libre</option>
+                                    <option value='maintenance' " . ($row['etat'] == 'maintenance' ? 'selected' : '') . ">Maintenance</option>
+                                </select>
+                            </form>";
 
-                if ($commande) {
-                    $heure_debut = strtotime($commande['heure_debut']);
-                    $heure_fin = $heure_debut + ($commande['duree'] * 60);
-                    $temps_restant = max(0, $heure_fin - time());
-                    $minutes_restantes = floor($temps_restant / 60);
-                    $secondes_restantes = $temps_restant % 60;
-                    $total_time = $commande['duree'] * 60; // Temps total en secondes
+                // 🔥 Ajouter le timer et la barre de progression si l'imprimante est en impression
+                if ($row['etat'] == 'en impression') {
+                    $stmtCommande = $pdo->prepare("
+                        SELECT * FROM commandes 
+                        WHERE imprimante_id = ? AND statut = 'en cours'
+                        ORDER BY heure_debut DESC LIMIT 1
+                    ");
+                    $stmtCommande->execute([$row['id']]);
+                    $commande = $stmtCommande->fetch();
 
-                    echo "<div class='impression-info'>
-                            <p><strong>Impression en cours :</strong> {$commande['nom_commande']}</p>
-                            <p><strong>Temps restant :</strong> 
-                                <span class='timer' id='printer-timer-{$commande['id']}' data-time='{$temps_restant}'>
-                                    {$minutes_restantes} min {$secondes_restantes} sec
-                                </span>
-                            </p>
-                        </div>";
+                    if ($commande) {
+                        $heure_debut = strtotime($commande['heure_debut']);
+                        $heure_fin = $heure_debut + ($commande['duree'] * 60);
+                        $temps_restant = max(0, $heure_fin - time());
+                        $minutes_restantes = floor($temps_restant / 60);
+                        $secondes_restantes = $temps_restant % 60;
+                        $total_time = $commande['duree'] * 60; // Temps total en secondes
+
+                        echo "<div class='impression-info'>
+                                <p><strong>Impression en cours :</strong> {$commande['nom_commande']}</p>
+                                <p><strong>Temps restant :</strong> 
+                                    <span class='timer' id='printer-timer-{$commande['id']}' data-time='{$temps_restant}'>
+                                        {$minutes_restantes} min {$secondes_restantes} sec
+                                    </span>
+                                </p>
+                            </div>";
+                    }
                 }
-            }
-            echo "</div></div>";
-        }
-        ?>
-    </div>
-</div>
 
-    <div id="utilisateurs" class="tab-content">
+                // Formulaire pour supprimer l'imprimante
+                echo "<form method='POST' action='/backend/controllers/supprimer_imprimante.php' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cette imprimante ?\");'>
+                        <input type='hidden' name='printer_id' value='{$row['id']}'>
+                        <button type='submit' class='btn-delete'>Supprimer</button>
+                    </form>";
+
+                echo "</div></div>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <div id="utilisateurs" class="tab-content"> 
         <h2>Gestion des utilisateurs</h2>
         <table>
             <thead>
@@ -333,10 +339,10 @@ $user = $stmt->fetch();
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Rôle</th>
+                    <th>Action</th> <!-- Nouvelle colonne pour l'action -->
                 </tr>
             </thead>
             <tbody id="user-list">
-                <!-- Les utilisateurs seront affichés ici via PHP -->
                 <?php
                 $stmt = $pdo->query("SELECT id, fullname, email, role FROM users");
                 while ($row = $stmt->fetch()) {
@@ -353,12 +359,20 @@ $user = $stmt->fetch();
                                     </select>
                                 </form>
                             </td>
+                            <td>
+                                <!-- Formulaire pour supprimer l'utilisateur -->
+                                <form method='POST' action='../controllers/supprimer_user.php' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet utilisateur ?\");'>
+                                    <input type='hidden' name='user_id' value='{$row['id']}'>
+                                    <button type='submit' class='btn-delete'>Supprimer</button>
+                                </form>
+                            </td>
                         </tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
+
 
     <div id="export" class="tab-content">
         <h2>Exporter les données</h2>
