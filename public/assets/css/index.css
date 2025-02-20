@@ -47,7 +47,6 @@ html, body {
     justify-content: space-between;
     align-items: center;
     background: white;
-    border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
 }
@@ -76,7 +75,6 @@ html, body {
 /* SECTION 2 - Prend toute la largeur */
 .home-section-2 {
     background: linear-gradient(to bottom, #e0e0e0, #c4c4c4);
-    border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
     flex-grow: 1;
@@ -115,7 +113,7 @@ html, body {
 }
 
 .features-list li:hover {
-    background: #007BFF;
+    background: linear-gradient(to left, #39edea, #6aaec5);
     color: white;
     transform: scale(1.05);
 }
