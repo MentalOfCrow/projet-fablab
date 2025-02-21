@@ -2,32 +2,36 @@
 session_start();
 include '../db/config.php';
 
+// Générer un token CSRF unique si non défini
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['email']);
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Erreur CSRF : Requête non autorisée.");
+    }
+
+    // Nettoyage des entrées utilisateur
+    $fullname = htmlspecialchars(trim($_POST['fullname']), ENT_QUOTES, 'UTF-8');
     $password = trim($_POST['password']);
 
-    if (empty($email) || empty($password)) {
+    if (empty($fullname) || empty($password)) {
         $_SESSION["error"] = "Veuillez remplir tous les champs.";
         header("Location: ../views/login.php");
         exit();
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["error"] = "Format d'email invalide.";
-        header("Location: ../views/login.php");
-        exit();
-    }
-
-    // Préparation et exécution de la requête
-    $stmt = $pdo->prepare("SELECT id, fullname, password, role FROM users WHERE email = ?");
-    $stmt->execute([$email]);
+    // Requête sécurisée pour éviter les injections SQL
+    $stmt = $pdo->prepare("SELECT id, fullname, password, role FROM users WHERE fullname = :fullname");
+    $stmt->bindParam(":fullname", $fullname, PDO::PARAM_STR);
+    $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
     // Vérification du mot de passe
-    if (password_verify($password, $user['password'])) {
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION["user_id"] = $user["id"];
-        $_SESSION["fullname"] = $user["fullname"];
+        $_SESSION["fullname"] = htmlspecialchars($user["fullname"], ENT_QUOTES, 'UTF-8');
         $_SESSION["role"] = strtolower($user["role"]); // Toujours en minuscule
 
         if ($_SESSION["role"] === "admin") {
@@ -74,7 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Connexion</h2>
         <form action="/backend/controllers/auth_controller.php" method="POST">
             <input type="hidden" name="action" value="login">
-            
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+
             <label for="fullname">Nom complet :</label>
             <input type="text" id="fullname" name="fullname" required>
             
@@ -90,6 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Inscription</h2>
         <form action="../controllers/auth_controller.php" method="POST">
             <input type="hidden" name="action" value="register">
+            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+
             <label for="fullname">Nom :</label>
             <input type="text" id="fullname" name="fullname" required>
 
