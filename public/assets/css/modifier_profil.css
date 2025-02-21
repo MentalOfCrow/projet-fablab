@@ -43,6 +43,7 @@ h2 {
     text-decoration: none;
     font-size: 16px;
     transition: background-color 0.3s;
+    width: 250px;
 }
 
 /* Effet au survol du bouton retour */
@@ -81,6 +82,7 @@ h2 {
 
 /* Submit button styling */
 .profile-form button {
+    margin-left: 38%;
     padding: 12px 20px;
     background-color: #2c3e50; /* Couleur bleue */
     color: white;
@@ -93,6 +95,7 @@ h2 {
 }
 
 .profile-form button:hover {
+    background-color: #34495e;
     color: #f39c12;
 }
 

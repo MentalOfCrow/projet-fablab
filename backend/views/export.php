@@ -35,13 +35,21 @@ $user = $stmt->fetch();
 
             <!-- Formulaire pour exporter les commandes -->
             <form action="../controllers/export_orders.php" method="POST" class="export-form">
-                <button type="submit" name="export_orders">📜 Exporter l'historique des commandes (PDF)</button>
+                <label for="start_date">Date de début :</label>
+                <input type="date" id="start_date" name="start_date" required>
+
+                <label for="end_date">Date de fin :</label>
+                <input type="date" id="end_date" name="end_date" required>
+
+                <label for="export_format">Format d'export :</label>
+                <select name="export_format" id="export_format">
+                    <option value="pdf">PDF</option>
+                    <option value="excel">Excel</option>
+                </select>
+
+                <button type="submit" name="export_orders">Exporter</button>
             </form>
 
-            <!-- Formulaire pour exporter les statistiques -->
-            <form action="../controllers/export_stats.php" method="POST" class="export-form">
-                <button type="submit" name="export_stats">📊 Exporter les statistiques (PDF)</button>
-            </form>
         </div>
     </div>     
 

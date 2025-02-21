@@ -121,6 +121,6 @@ Tu es libre de le modifier, redistribuer, à condition de conserver la licence d
 ### Auteurs 
 Abdallah 
 Hugo 
-Joan 
+Johan
 
 Pour toute question, ouvre une issue ou contacte-nous directement.

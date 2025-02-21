@@ -14,11 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['printer_id']) && isset
         $_SESSION['error'] = "Erreur lors de la mise à jour.";
     }
 
-    header("Location: ../views/dashboard-admin.php");
+    header("Location: ../views/imprimantes.php");
     exit();
 } else {
     $_SESSION['error'] = "Requête invalide.";
-    header("Location: ../views/dashboard-admin.php");
+    header("Location: ../views/imprimantes.php");
     exit();
 }
 ?>
