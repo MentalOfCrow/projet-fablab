@@ -155,6 +155,7 @@ html, body {
     .home-section-1 {
         flex-direction: column;
         text-align: center;
+        padding: 20px;
     }
 
     .left-container, .right-container {
@@ -163,6 +164,15 @@ html, body {
 
     .left-container {
         text-align: center;
+    }
+
+    .right-container {
+        justify-content: center;
+    }
+
+    .fablab-image {
+        width: 80%;
+        max-width: 500px;
     }
 }
 
@@ -174,5 +184,48 @@ html, body {
     .features-list li {
         font-size: 16px;
         padding: 10px;
+    }
+
+    .home-section-1 {
+        padding: 15px;
+    }
+
+    .fablab-image {
+        width: 90%;
+        max-width: 400px;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-section-1 {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .left-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .right-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .fablab-image {
+        width: 95%;
+        max-width: 350px;
+    }
+
+    .features-container {
+        width: 100%;
+    }
+
+    .features-list li {
+        font-size: 14px;
+        padding: 8px;
     }
 }
