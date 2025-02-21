@@ -40,8 +40,10 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li>📂 Faciliter l’exportation des statistiques et rapports d’utilisation.</li>
                 </ul>
             </div>
-            <div class="right-container">
-                <img src="/public/assets/images/lab.jpg" alt="Le FabLab" class="fablab-image">
+            <div class="carousel">
+                <img class="carousel-image" src="/public/assets/images/imprimante1.jpg" alt="Imprimante 3D 1">
+                <img class="carousel-image" src="/public/assets/images/imprimante2.jpg" alt="Imprimante 3D 2">
+                <img class="carousel-image" src="/public/assets/images/imprimante3.jpg" alt="Imprimante 3D 3">
             </div>
         </section>
 
@@ -63,5 +65,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <?php include_once __DIR__ . '/../includes/footer.php'; ?>
 
+<script src="/public/js/app.js"></script>
 </body>
 </html>
