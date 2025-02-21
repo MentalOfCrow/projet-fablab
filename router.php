@@ -8,14 +8,19 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
 // Récupération et nettoyage de l'URI demandée
 $request_uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-// Si aucune route n'est spécifiée, afficher la page d'accueil
+// Forcer la suppression des éventuels espaces et nettoyer les buffers de sortie
+ob_start();
+
+// Si aucune route n'est spécifiée ou si c'est "index", rediriger vers la page principale
 if ($request_uri === '' || $request_uri === 'index') {
-    require_once __DIR__ . '/backend/views/index.php';
-    exit;
+    header("Location: /backend/views/index.php");
+    ob_end_flush();
+    exit();
 }
 
 // Vérification si c'est un fichier statique (CSS, JS, images)
-if (file_exists(__DIR__ . '/' . $request_uri) && is_file(__DIR__ . '/' . $request_uri)) {
+$file_path = __DIR__ . '/' . $request_uri;
+if (file_exists($file_path) && is_file($file_path)) {
     return false;
 }
 
@@ -36,10 +41,12 @@ $routes = [
 // Vérification et inclusion des fichiers de vue
 if (array_key_exists($request_uri, $routes)) {
     require_once __DIR__ . '/' . $routes[$request_uri];
-    exit;
+    ob_end_flush();
+    exit();
 }
 
-// Gestion des erreurs 404
-http_response_code(404);
-echo "<h1>404 - Page non trouvée</h1>";
+// Si la route est invalide, rediriger vers la page principale **avec arrêt immédiat**
+header("Location: /backend/views/index.php", true, 302);
+ob_end_flush();
+exit();
 ?>
