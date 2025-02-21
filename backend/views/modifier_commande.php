@@ -32,12 +32,14 @@ if (!$commande) {
     <meta charset="UTF-8">
     <title>Modifier commande</title>
     <link rel="stylesheet" href="/public/assets/css/header.css">
-    <link rel="stylesheet" href="/public/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/public/assets/css/modifier_commande.css">
     <link rel="stylesheet" href="/public/assets/css/footer.css">
 </head>
 <body>
 
 <?php include_once __DIR__ . '/../includes/header.php'; ?>
+<a href="/backend/views/historique.php" class="back-btn">Retour a mes commandes</a> 
+
 
 <div class="commande-form-container">
     <h1>Modifier la commande : <?php echo htmlspecialchars($commande['nom_commande']); ?></h1>

@@ -152,6 +152,7 @@ h2 {
     text-decoration: none;
     font-size: 16px;
     transition: background-color 0.3s;
+    width: 250px;
 }
 
 /* Effet au survol du bouton retour */

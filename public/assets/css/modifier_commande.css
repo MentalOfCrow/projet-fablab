@@ -1,4 +1,6 @@
-/* commande.css */
+/* modifier_commande.css */
+
+/* Global body styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f7f7;
@@ -11,69 +13,81 @@ body {
     margin: 20px auto;
 }
 
-#commande {
+.commande-form-container {
     background-color: white;
     border-radius: 8px;
+    padding: 20px;
     margin-right: 60px;
     margin-bottom: 60px;
     margin-left: 60px;
-    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    color: #2c3e50; /* Couleur sombre pour les titres */
+h1 {
     font-size: 24px;
+    color: #2c3e50;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.add-order-form {
+/* Form styles */
+.commande-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
-/* Style des labels */
-.add-order-form label {
+/* Labels */
+.commande-form label {
     font-size: 16px;
-    color: #34495e; /* Couleur de texte sombre mais douce */
+    color: #34495e;
 }
 
-/* Style des champs de saisie */
-.add-order-form input,
-.add-order-form select {
+/* Input fields */
+.commande-form input,
+.commande-form select {
     padding: 12px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fafafa;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease;
 }
 
-/* Effet focus sur les champs */
-.add-order-form input:focus,
-.add-order-form select:focus {
-    border-color: #2980b9; /* Couleur bleue pour le focus */
+.commande-form input:focus,
+.commande-form select:focus {
+    border-color: #2980b9;
     outline: none;
 }
 
-/* Style du bouton */
-.add-order-form button {
+/* Submit button */
+.submit-button {
     padding: 12px 20px;
-    background-color: #2c3e50; /* Couleur bleue */
+    background-color: #2980b9;
     color: white;
-    font-size: 18px;
     border: none;
     border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
-    width: 25%;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-/* Effet au survol du bouton */
-.add-order-form button:hover {
-    color: #f39c12;
+.submit-button:hover {
+    background-color: #3498db;
+}
+
+/* Cancel link */
+.cancel-link {
+    color: #34495e;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.cancel-link:hover {
+    color: #2980b9;
 }
 
 /* Style du bouton "Retour" */
@@ -88,8 +102,8 @@ h2 {
     border-radius: 8px;
     text-decoration: none;
     font-size: 16px;
-    transition: background-color 0.3s;
     width: 250px;
+    transition: background-color 0.3s;
 }
 
 /* Effet au survol du bouton retour */
@@ -98,21 +112,18 @@ h2 {
     color: #f39c12;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         width: 95%;
     }
 
-    .add-order-form {
-        gap: 10px;
-    }
-
-    .add-order-form input,
-    .add-order-form select {
+    .commande-form input,
+    .commande-form select {
         font-size: 14px;
     }
 
-    .add-order-form button {
-        font-size: 16px;
+    .submit-button {
+        font-size: 14px;
     }
 }

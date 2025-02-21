@@ -27,6 +27,10 @@ $user = $stmt->fetch();
 
 <?php include '../../backend/includes/header.php'; ?>
 
+<div class="header-content">
+    <div id="notification-area"></div> 
+</div>
+
 <div class="dashboard-container">
     <h1>Bienvenue, <?php echo htmlspecialchars($user['fullname']); ?> 👋</h1>
     <p>Gérez vos commandes et suivez vos impressions ici.</p>
