@@ -1,10 +1,3 @@
-<?php 
-// Démarrer la session si besoin
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,21 +9,19 @@ if (session_status() == PHP_SESSION_NONE) {
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="navbar">
             <div class="nav-container">
                 <!-- Logo -->
                 <a href="/backend/views/index.php" class="logo">
                     <img src="/public/assets/images/logo-FabLab.png" alt="FabLab Logo">
                 </a>
 
-                <?php if (!isset($_SESSION['user_id'])): ?>
-                    <!-- Afficher le bouton Connexion si l'utilisateur n'est pas connecté -->
-                    <div class="connexion-btn">
+                <div class="nav-links">
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                        <!-- Afficher le bouton Connexion si l'utilisateur n'est pas connecté -->
                         <a href="/backend/views/login.php">Connexion</a>
-                    </div>
-                <?php else: ?>
-                    <!-- Afficher les boutons dynamiques si l'utilisateur est connecté -->
-                    <div class="user-buttons">
+                    <?php else: ?>
+                        <!-- Afficher les boutons dynamiques si l'utilisateur est connecté -->
                         <?php if ($_SESSION['role'] === 'admin'): ?>
                             <!-- Boutons pour l'admin -->
                             <a href="/backend/views/commande.php">Passer une commande</a>
@@ -44,12 +35,14 @@ if (session_status() == PHP_SESSION_NONE) {
                         <?php elseif ($_SESSION['role'] === 'user'): ?>
                             <!-- Boutons pour l'utilisateur -->
                             <a href="/backend/views/commande-user.php">Passer une commande</a>
-                            <a href="/backend/views/historique.php">Historique des commandes</a>
-                            <a href="/backend/views/modifier_profil.php">Modifier mon profil</a>
+                            <a href="/backend/views/historique.php">Mes commandes</a>
+                            <a href="/backend/views/modifier_profil.php">Mon profil</a>
                             <a href="/backend/controllers/logout.php">Déconnexion</a>
                         <?php endif; ?>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </nav>
     </header>
+</body>
+</html>

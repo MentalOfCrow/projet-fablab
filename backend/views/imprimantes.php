@@ -33,23 +33,6 @@ $user = $stmt->fetch();
         <div id="imprimantes">
             <h2>Liste des imprimantes</h2>
 
-            <!-- Formulaire d'ajout d'imprimante -->
-            <form action="../controllers/add_printer.php" method="POST" enctype="multipart/form-data" class="add-printer-form">
-                <label for="nom">Nom de l'imprimante :</label>
-                <input type="text" id="nom" name="nom" required>
-
-                <label for="type">Type d'impression :</label>
-                <select id="type" name="type" required>
-                    <option value="résine">Résine</option>
-                    <option value="filament">Filament</option>
-                </select>
-
-                <label for="photo">Photo :</label>
-                <input type="file" id="photo" name="photo" accept="image/*" required>
-
-                <button type="submit">Ajouter l'imprimante</button>
-            </form>
-
             <div class="printer-list">
                 <?php
                 $stmt = $pdo->query("SELECT * FROM imprimantes");
@@ -112,6 +95,25 @@ $user = $stmt->fetch();
                 }
                 ?>
             </div>
+
+            <h2>Ajouter une nouvelle imprimante</h2>
+
+             <!-- Formulaire d'ajout d'imprimante -->
+             <form action="../controllers/add_printer.php" method="POST" enctype="multipart/form-data" class="add-printer-form">
+                <label for="nom">Nom de l'imprimante :</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="type">Type d'impression :</label>
+                <select id="type" name="type" required>
+                    <option value="résine">Résine</option>
+                    <option value="filament">Filament</option>
+                </select>
+
+                <label for="photo">Photo :</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+
+                <button type="submit">Ajouter l'imprimante</button>
+            </form>
         </div>
     </div>     
 

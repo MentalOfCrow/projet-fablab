@@ -1,69 +1,48 @@
-/* Style du header */
-header {
-    background-color: #222;
-    padding: 15px 0;
-    text-align: center;
-    position: relative;
-    width: 100%;
+/* header.css */
+
+/* Styles globaux du header */
+.navbar {
+    background-color: #2c3e50; /* Un bleu-gris profond */
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Container pour aligner logo et bouton */
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
 }
 
-/* Logo centré */
 .logo img {
-    height: 100px; /* Ajuste la taille du logo */
-    display: block;
-    margin: 0 auto;
+    width: 150px;
+    height: auto;
 }
 
-.connexion-btn a, .user-buttons a {
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    font-size: 16px;
+    width: 100px;
+    margin: 0 15px;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.3s ease, padding-bottom 0.3s ease;
 }
 
-.connexion-btn a:hover, .user-buttons a:hover {
-    background-color: #666;
+.nav-links a:hover {
+    color: #f39c12; /* Jaune doux au survol */
+    padding-bottom: 5px;
 }
 
-.user-buttons {
-    display: flex; /* Utilisation de flexbox */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
-    justify-content: flex-start; /* Aligne les éléments à gauche */
-    gap: 10px; /* Espacement entre les boutons */
-}
-
-.user-buttons a {
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    white-space: nowrap; /* Empêche le texte de se casser */
-    flex-shrink: 0; /* Empêche les boutons de se réduire */
-}
-
-.user-buttons a:hover {
-    background-color: #555;
-}
-
-/* Bouton de déconnexion */
-.logout-btn {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin-left: 10px;
-    background-color: #444;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.logout-btn:hover {
-    background-color: #666;
+.nav-links a:last-child {
+    margin-right: 0; /* Enlever la marge droite du dernier élément */
 }

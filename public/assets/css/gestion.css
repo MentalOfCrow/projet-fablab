@@ -1,50 +1,171 @@
-.container{
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-bottom: 20px;
+/* gestion.css */
+
+/* Global body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
 
-.back-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+/* Container styles */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#utilisateurs {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+    margin-left: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #2c3e50;
     margin-bottom: 20px;
-    width: 160px;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.back-btn:hover {
-    background-color: #555;
-}
-
-h2{
-    margin-bottom: 20px;
-}
-
-/* Table des utilisateurs */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
     text-align: center;
 }
 
-th {
-    background-color: #333;
+/* Styling the back button */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #2c3e50;
     color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-select {
-    padding: 5px;
+.back-btn:hover {
+    background-color: #34495e;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
     border: 1px solid #ddd;
-    border-radius: 5px;
+}
+
+table th {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 16px;
+}
+
+table td {
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+
+table td select {
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* Action buttons */
+.btn-delete {
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+form {
+    display: inline-block;
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.pagination-btn {
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.pagination-btn:hover {
+    background-color: #34495e;
+}
+
+.current-page {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-top: 8px;
+}
+
+/* Style du bouton "Retour" */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 30px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Effet au survol du bouton retour */
+.back-btn:hover {
+    background-color: #34495e;
+    color: #f39c12;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    table th, table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .btn-delete {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .pagination-btn {
+        font-size: 14px;
+    }
 }

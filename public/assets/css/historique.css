@@ -1,265 +1,173 @@
-.container{
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-bottom: 20px;
+/* historique.css */
+
+/* Global body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
 
+/* Container styles */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#historique {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+    margin-left: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Style du bouton "Retour" */
 .back-btn {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
+    margin-bottom: 20px;
+    background-color: #2c3e50;
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    width: 160px;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
+/* Effet au survol du bouton retour */
 .back-btn:hover {
-    background-color: #555;
+    background-color: #34495e;
+    color: #f39c12;
 }
 
-h2{
-    margin-bottom: 20px;
-}
-
-/* ✅ Style du champ de recherche */
+/* Search input */
 #searchInput {
     width: 100%;
-    max-width: 400px;
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    outline: none;
     margin-bottom: 20px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: 0.3s;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    transition: border 0.3s;
 }
 
 #searchInput:focus {
-    border-color: #007bff;
-    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    border: 1px solid #2c3e50;
+    outline: none;
 }
 
-/* ✅ Conteneur des commandes */
+/* Order list and individual order cards */
 .order-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* ✅ Style des cartes de commande */
 .order-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
     padding: 15px;
-    width: 300px;
-    text-align: center;
-    transition: transform 0.3s;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .order-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ✅ Centrer le statut */
-.order-card {
+.order-header {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre horizontalement */
-    justify-content: center; /* Centre verticalement */
-    text-align: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* ✅ Ajustement du statut */
-.status {
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
-    text-transform: capitalize;
-    display: inline-block;
-    width: fit-content; /* Ajuste la largeur au contenu */
-    margin: 10px auto; /* Centre horizontalement */
-}
-
-
-/* ✅ Statuts des commandes */
-.order-card p {
-    font-size: 14px;
-    color: #555;
-}
-
-.order-card .status {
-    font-weight: bold;
-    padding: 5px;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-.status.en_attente {
-    background-color: #ffc107;
-    color: #856404;
-}
-
-.status.en_cours {
-    background-color: #17a2b8;
-    color: #fff;
-}
-
-.status.termine {
-    background-color: #28a745;
-    color: #fff;
-}
-
-/* ✅ Styles des statuts des commandes */
-.status {
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
-    text-transform: capitalize;
-}
-
-/* 🔴 En attente (rouge) */
-.status.en_attente {
-    background-color: #dc3545; /* Rouge */
-    color: white;
-}
-
-/* 🟠 En cours d'impression (orange) */
-.status.en_cours {
-    background-color: #fd7e14; /* Orange */
-    color: white;
-}
-
-/* 🟢 Terminé (vert) */
-.status.termine {
-    background-color: #28a745; /* Vert */
-    color: white;
+.order-header h3 {
+    font-size: 18px;
+    color: #2c3e50;
 }
 
 .status-label {
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 12px;
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 12px;
 }
 
 .status-pending {
-    background-color: red;
-    color: white;
-}
-
-.status-in-progress {
     background-color: orange;
     color: white;
 }
 
+.status-in-progress {
+    background-color: #f39c12;
+    color: white;
+}
+
 .status-done {
-    background-color: green;
+    background-color: #4caf50;
     color: white;
 }
 
-.btn-edit {
-    background-color: #bbb;
+.order-info p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons for editing and deleting orders */
+.btn-edit,
+.btn-delete {
+    padding: 8px 16px;
+    background-color: #2c3e50;
     color: white;
-    padding: 10px;
     border: none;
+    border-radius: 8px;
+    font-size: 14px;
     cursor: pointer;
-    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
 }
 
+.btn-edit:hover,
+.btn-delete:hover {
+    background-color: #34495e;
+}
+
+/* Non-modifiable text */
 .non-modifiable {
-    color: gray;
-    font-style: italic;
+    font-size: 14px;
+    color: #e74c3c;
 }
 
-/* Style général du formulaire */
-.commande-form-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    margin: auto;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
 
-.commande-form-container h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-}
+    .order-header h3 {
+        font-size: 16px;
+    }
 
-/* Organisation des champs en grille */
-.commande-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    align-items: center;
-}
+    .order-info p {
+        font-size: 12px;
+    }
 
-.commande-form label {
-    font-weight: bold;
-    text-align: left;
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Champs de saisie */
-.commande-form input,
-.commande-form select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-/* Bouton d'enregistrement */
-.commande-form .submit-button {
-    grid-column: span 2;
-    background: #bbb;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s ease;
-}
-
-.commande-form .submit-button:hover {
-    background: #218838;
-}
-
-/* Lien d'annulation */
-.commande-form .cancel-link {
-    background: #dc3545;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center;
-    display: inline-block;
-    text-decoration: none;
-    transition: background 0.3s ease;
-    margin-left: 180px;
-}
-
-.commande-form .cancel-link:hover {
-    text-decoration: underline;
+    .order-card {
+        padding: 10px;
+    }
 }

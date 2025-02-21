@@ -1,142 +1,185 @@
-.container{
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-bottom: 20px;
+/* imprimantes.css */
+
+/* Global body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
 
-.back-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+/* Container styles */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+#imprimantes {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-right: 60px;
+    margin-bottom: 60px;
+    margin-left: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #2c3e50;
     margin-bottom: 20px;
-    width: 160px;
-    margin-top: 20px;
-    margin-left: 20px;
+    text-align: center;
 }
 
-.back-btn:hover {
-    background-color: #555;
-}
-
-h2{
-    margin-bottom: 20px;
-}
-
-/* Conteneur du formulaire */
+/* Styling the printer form */
 .add-printer-form {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
-    justify-content: center;
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-/* Style des labels */
 .add-printer-form label {
-    font-weight: bold;
-    margin-right: 5px;
+    font-size: 16px;
+    color: #2c3e50;
 }
 
-/* Style des champs de saisie et de sélection */
 .add-printer-form input,
 .add-printer-form select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px;
     font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
-/* Bouton d'ajout */
 .add-printer-form button {
-    background-color: #bbb;
+    padding: 12px;
+    background-color: #2c3e50;
     color: white;
-    padding: 8px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
 .add-printer-form button:hover {
-    background-color: #333;
+    background-color: #34495e;
 }
 
-/* Liste des imprimantes */
+/* Styling the printer cards */
 .printer-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-/* Card de l'imprimante */
 .printer-card {
-    display: flex;
-    width: 800px;
+    background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    width: 29%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.printer-card:hover {
+    transform: scale(1.02);
 }
 
 .printer-card img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    margin-top: 30px;
-    margin-left: 30px;
-    margin-right: 100px;
-}
-
-.printer-info {
-    padding: 10px;
-    flex: 1;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .printer-info h3 {
-    margin: 0;
-    font-size: 18px;
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 10px;
 }
 
-.etat {
-    padding: 5px;
-    border-radius: 5px;
+.printer-info p {
+    font-size: 14px;
     color: white;
+    margin-bottom: 8px;
+}
+
+/* Styling for the printer status indicator */
+.printer-info .etat {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 8px;
     font-weight: bold;
-    text-align: center;
-    width: 120px;
 }
 
-form {
-    margin-bottom: 30px;
-}
-
-.impression-info {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.print-progress {
-    width: 100%;
-    background-color: #ddd; /* Gris clair */
-    border-radius: 5px;
-    overflow: hidden;
-    height: 10px;
+.status-form select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     margin-top: 10px;
 }
 
-.progress-bar {
-    width: 0%;
-    height: 100%;
-    background-color: #ff9800; /* Orange pour l'impression en cours */
-    transition: width 1s linear;
+.btn-delete {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Style du bouton "Retour" */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 30px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Effet au survol du bouton retour */
+.back-btn:hover {
+    background-color: #34495e;
+    color: #f39c12;
+}
+
+h2{
+    margin-top: 20px;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .printer-card {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .printer-info h3 {
+        font-size: 18px;
+    }
+
+    .printer-info p {
+        font-size: 12px;
+    }
 }

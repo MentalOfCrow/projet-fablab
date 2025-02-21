@@ -1,22 +1,30 @@
-main {
-    height: auto;
-}
+/* login.css */
 
+/* Global body styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
 }
 
 .login-container {
-    width: 50%;
-    margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Tabs for switching between login and register */
 .tabs {
     display: flex;
     justify-content: center;
@@ -25,18 +33,21 @@ body {
 
 .tab-link {
     padding: 10px 20px;
-    cursor: pointer;
-    background: #ddd;
-    border: none;
-    outline: none;
-    font-size: 16px;
-}
-
-.tab-link.active {
-    background: #007BFF;
+    background-color: #2c3e50;
     color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+.tab-link:hover,
+.tab-link.active {
+    background-color: #3498db;
+}
+
+/* Form container styles */
 .tab-content {
     display: none;
 }
@@ -48,27 +59,69 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 15px;
 }
 
-input, select {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Input fields */
+form input {
+    padding: 12px;
     font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+form input:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Buttons */
+form button {
+    padding: 12px 20px;
+    background-color: #2c3e50; /* Couleur bleue */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 25%;
+    margin-left: 38%;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    color: #f39c12;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    form input,
+    form button {
+        font-size: 14px;
+    }
 }
