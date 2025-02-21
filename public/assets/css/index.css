@@ -2,11 +2,10 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
     width: 100%;
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom, #d4d4d4, #f4f4f4, #c4c4c4);
@@ -19,9 +18,10 @@ html, body {
     flex-direction: column;
     width: 100%;
     height: auto;
+    padding: 20px;
 }
 
-/* SECTION 1 - Contenu principal sur toute la largeur */
+/* SECTION 1 - Contenu principal */
 .home-section-1 {
     display: flex;
     justify-content: space-between;
@@ -29,8 +29,12 @@ html, body {
     background: white;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
+    border-radius: 12px;
+    padding: 30px;
+    gap: 20px;
 }
 
+/* Texte à gauche */
 .left-container {
     width: 50%;
     text-align: left;
@@ -38,6 +42,38 @@ html, body {
     box-sizing: border-box;
 }
 
+.left-container h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.left-container h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.left-container p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.left-container ul {
+    padding-left: 20px;
+}
+
+.left-container ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+/* Image à droite */
 .right-container {
     width: 50%;
     display: flex;
@@ -48,18 +84,18 @@ html, body {
 .fablab-image {
     max-width: 100%;
     height: auto;
-    border-radius: 12px 0 0 12px;
+    border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* SECTION 2 - Prend toute la largeur */
+/* SECTION 2 - Fonctionnalités */
 .home-section-2 {
     background: linear-gradient(to bottom, #e0e0e0, #c4c4c4);
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
-    flex-grow: 1;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 30px;
 }
 
 .features-container {
@@ -68,7 +104,7 @@ html, body {
     text-align: center;
 }
 
-.title {
+.features-container .title {
     font-size: 24px;
     font-weight: bold;
     color: #333;
@@ -79,7 +115,7 @@ html, body {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: center;
+    text-align: left;
 }
 
 .features-list li {
@@ -90,6 +126,9 @@ html, body {
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .features-list li:hover {
@@ -102,10 +141,38 @@ html, body {
     margin-top: 20px;
     font-size: 18px;
     color: #222;
+    text-align: center;
 }
 
 /* Ajustements pour s'assurer que tout prend bien la place */
 .content {
     height: auto;
     width: 100%;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .home-section-1 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-container, .right-container {
+        width: 100%;
+    }
+
+    .left-container {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-container {
+        width: 95%;
+    }
+
+    .features-list li {
+        font-size: 16px;
+        padding: 10px;
+    }
 }
