@@ -69,13 +69,30 @@ Dans le tableau de bord, tu visualises les imprimantes disponibles, les commande
 
 ### Structure du Projet
 
+PROJET-FABLAB :
 
+```
 PROJET-FABLAB/
-├── .env
-├── .gitignore
 ├── backend
 │   ├── controllers
-│   │   └── controller.php
+│   │   ├── add_order.php
+│   │   ├── add_printer.php
+│   │   ├── auth_controller.php
+│   │   ├── check_completed_prints.php
+│   │   ├── export_orders.php
+│   │   ├── export_stats.php
+│   │   ├── get_completed_orders.php
+│   │   ├── get_notifications.php
+│   │   ├── logout.php
+│   │   ├── start_printing.php
+│   │   ├── supprimer_commande.php
+│   │   ├── supprimer_imprimante.php
+│   │   ├── supprimer_user.php
+│   │   ├── traiter_modification.php
+│   │   ├── update_printer_status.php
+│   │   ├── update_printer.php
+│   │   ├── update_profile.php
+│   │   └── update_user.php
 │   ├── db
 │   │   ├── bdd.sql
 │   │   └── config.php
@@ -85,18 +102,72 @@ PROJET-FABLAB/
 │   ├── models
 │   │   └── model.php
 │   └── views
-│       └── view.php
-├── index.php
-├── LICENSE
+│       ├── 404.php
+│       ├── about.php
+│       ├── attentes.php
+│       ├── commande-user.php
+│       ├── commande.php
+│       ├── contact.php
+│       ├── cours.php
+│       ├── dashboard-admin.php
+│       ├── dashboard-user.php
+│       ├── export.php
+│       ├── faq.php
+│       ├── gestion.php
+│       ├── help.php
+│       ├── historique.php
+│       ├── imprimantes.php
+│       ├── index.php
+│       ├── login.php
+│       ├── modifier_commande.php
+│       ├── modifier_profil.php
+│       ├── privacy.php
+│       ├── termines.php
+│       └── terms.php
 ├── public
 │   └── assets
 │       ├── css
-│       │   └── index.css
+│       │   ├── 404.css
+│       │   ├── about.css
+│       │   ├── attentes.css
+│       │   ├── commande.css
+│       │   ├── contact.css
+│       │   ├── cours.css
+│       │   ├── dashboard.css
+│       │   ├── export.css
+│       │   ├── faq.css
+│       │   ├── footer.css
+│       │   ├── gestion.css
+│       │   ├── header.css
+│       │   ├── help.css
+│       │   ├── historique.css
+│       │   ├── imprimantes.css
+│       │   ├── index.css
+│       │   ├── login.css
+│       │   ├── modifier_commande.css
+│       │   ├── modifier_profil.css
+│       │   ├── privacy.css
+│       │   ├── termines.css
+│       │   └── terms.css
 │       ├── img
 │       └── js
-│           └── app.js
+│           ├── 404.js
+│           ├── app.js
+│           ├── tabs.js
+│           ├── tabs2.js
+│           ├── updatePrints.js
+│           └── updateProgress.js
+│       └── uploads
+├── .env
+├── .gitignore
+├── LICENSE
 ├── README.md
+├── composer.json
+├── composer.lock
+├── index.php
 └── router.php
+````
+
 
 Principaux dossiers :
 
