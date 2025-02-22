@@ -176,23 +176,23 @@ PROJET-FABLAB/
 
 ### Principaux dossiers :
 
-backend : logique métier (contrôleurs, modèles, vues, config BDD, etc.).
-public/assets : ressources statiques (CSS, JS, images).
-index.php : point d’entrée principal.
-router.php : gère le routage des requêtes vers les bons contrôleurs.
+- backend : logique métier (contrôleurs, modèles, vues, config BDD, etc.).
+- public/assets : ressources statiques (CSS, JS, images).
+- index.php : point d’entrée principal.
+- router.php : gère le routage des requêtes vers les bons contrôleurs.
 
 ### Contribuer
-Les contributions sont les bienvenues !
+- Les contributions sont les bienvenues !
 
 ### Fork le dépôt
-Crée une branche (ex: feature/ma-nouvelle-fonctionnalite)
-Fais tes modifications et ajoute des tests si nécessaire
-Soumets une Pull Request
-Merci de respecter la convention de commit (optionnel).
+- Crée une branche (ex: feature/ma-nouvelle-fonctionnalite)
+- Fais tes modifications et ajoute des tests si nécessaire
+- Soumets une Pull Request
+- Merci de respecter la convention de commit (optionnel).
 
 ### Licence
-Ce projet est sous licence MIT (ou autre, selon ton choix).
-Tu es libre de le modifier, redistribuer, à condition de conserver la licence d’origine.
+- Ce projet est sous licence MIT (ou autre, selon ton choix).
+- Tu es libre de le modifier, redistribuer, à condition de conserver la licence d’origine.
 
 ### Auteurs 
 - Abdallah 
