@@ -96,9 +96,12 @@
 - Compte Administrateur
 - Identifiant : johan
 - Mot de passe : 010422
+
 - Compte Utilisateur
 - Identifiant : paul
 - Mot de passe : 010203
+
+Vous pouvez également créer votre propre compte, cela fonctionne très bien aussi.
 
 ### Structure du Projet
 PROJET-FABLAB :
