@@ -1,16 +1,31 @@
-<?php 
+<?php
+session_start();
 include '../db/config.php';
 
-session_start();
+// Vérification si l'utilisateur est connecté et s'il a bien un rôle user
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "user") {
     header("Location: ../views/login.php");
     exit();
 }
 
-// Récupérer les infos de l'utilisateur connecté
+// Récupérer l'ID de l'utilisateur connecté
+$user_id = $_SESSION["user_id"];
+
+// Vérification si l'ID est valide
+if (!is_numeric($user_id)) {
+    die("Erreur : L'ID de l'utilisateur est invalide.");
+}
+
+// Requête pour récupérer le nom de l'utilisateur
 $stmt = $pdo->prepare("SELECT fullname FROM users WHERE id = ?");
-$stmt->execute([$_SESSION["user_id"]]);
+$stmt->execute([$user_id]);
 $user = $stmt->fetch();
+
+if ($user) {
+    $fullname = $user['fullname'];  // Nom de l'utilisateur connecté
+} else {
+    die("Utilisateur introuvable.");
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +42,8 @@ $user = $stmt->fetch();
 
 <?php include '../../backend/includes/header.php'; ?>
 
-<div class="header-content">
-    <div id="notification-area"></div> 
-</div>
-
 <div class="dashboard-container">
-    <h1>Bienvenue, <?php echo htmlspecialchars($user['fullname']); ?> 👋</h1>
+    <h1>Bienvenue, <?php echo htmlspecialchars($fullname); ?> 👋</h1>
     <p>Gérez vos commandes et suivez vos impressions ici.</p>
 
     <section class="dashboard-section">

@@ -51,6 +51,12 @@ $user = $stmt->fetch();
                     <option value="Violet">Violet</option>
                 </select>
 
+                <label for="type_impression">Type d'impression :</label>
+                <select id="type_impression" name="type_impression" required>
+                    <option value="résine">Résine</option>
+                    <option value="filament">Filament</option>
+                </select>
+
                 <label for="hauteur">Hauteur (mm) :</label>
                 <input type="number" id="hauteur" name="hauteur" step="0.1" required>
 

@@ -31,12 +31,12 @@ $user = $stmt->fetch();
   
     <div class="container">
         <div id="attente">
-            <h2 class=titre>Commandes en attentes</h2>
-            
+            <h2 class="titre">Commandes en attentes</h2>
+
             <div class="order-list1">
                 <?php
                 // Récupérer les imprimantes disponibles (état = libre)
-                $stmtImprimantes = $pdo->query("SELECT id, nom FROM imprimantes WHERE etat = 'libre'");
+                $stmtImprimantes = $pdo->query("SELECT id, nom, type FROM imprimantes WHERE etat = 'libre'");
                 $imprimantes = $stmtImprimantes->fetchAll();
 
                 // Récupérer les commandes en attente
@@ -55,6 +55,7 @@ $user = $stmt->fetch();
                                 <h3>{$row['nom_commande']}</h3>
                                 <p><strong>Client :</strong> {$row['fullname']}</p>
                                 <p><strong>Couleur :</strong> {$row['couleur']}</p>
+                                <p><strong>Materiel :</strong> {$row['type_impression']}</p>
                                 <p><strong>Dimensions :</strong> {$row['hauteur']}mm x {$row['longueur']}mm x {$row['largeur']}mm</p>
                                 <p><strong>Fichier STL :</strong> <a href='/public/uploads/{$row['fichier_stl']}' download>Télécharger</a></p>
                                 <p><strong>Date :</strong> {$date_formatee}</p>
@@ -63,14 +64,14 @@ $user = $stmt->fetch();
                                 <!-- Sélection de l'imprimante et durée -->
                                 <form method='POST' action='../controllers/start_printing.php'>
                                     <input type='hidden' name='commande_id' value='{$row['id']}'>
+                                    
+                                    <label for='type_impression'>Type d'impression :</label>
+                                    <input type='hidden' name='type_impression' value='{$row['type_impression']}'> 
 
                                     <label for='imprimante'>Sélectionner une imprimante :</label>
-                                    <select name='imprimante_id' required>
-                                        <option value=''>Sélectionner...</option>";
-                                        foreach ($imprimantes as $imprimante) {
-                                            echo "<option value='{$imprimante['id']}'>{$imprimante['nom']}</option>";
-                                        }
-                                    echo "</select>
+                                    <select name='imprimante_id' id='imprimante_id_{$row['id']}' required>
+                                        <option value=''>Sélectionner...</option>
+                                    </select>
 
                                     <label for='duree'>Durée de l'impression (en min) :</label>
                                     <input type='number' name='duree' min='1' required>
@@ -79,11 +80,35 @@ $user = $stmt->fetch();
                                 </form>
                             </div>
                         </div>";
+
+                    // Générer un script JavaScript pour filtrer les imprimantes en fonction du type d'impression
+                    echo "<script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const typeImpression = '{$row['type_impression']}'; // Récupérer le type d'impression
+                            const imprimanteSelect = document.getElementById('imprimante_id_{$row['id']}'); // Sélectionner le bon menu déroulant
+                            
+                            // Vider les options précédentes
+                            imprimanteSelect.innerHTML = '<option value=\"\">Sélectionner...</option>';
+
+                            // Filtrer les imprimantes disponibles selon le type d'impression
+                            const imprimantes = " . json_encode($imprimantes) . ";
+                            const filteredImprimantes = imprimantes.filter(imprimante => imprimante.type === typeImpression);
+
+                            // Ajouter les imprimantes filtrées au menu déroulant
+                            filteredImprimantes.forEach(imprimante => {
+                                const option = document.createElement('option');
+                                option.value = imprimante.id;
+                                option.textContent = imprimante.nom;
+                                imprimanteSelect.appendChild(option);
+                            });
+                        });
+                    </script>";
                 }
                 ?>
             </div>
         </div>
-    </div>     
+    </div>
+
 
 
 <?php include '../../backend/includes/footer.php'; ?>

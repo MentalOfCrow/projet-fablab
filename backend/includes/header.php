@@ -1,3 +1,20 @@
+<?php
+include '../db/config.php';
+
+// Vérifier si l'utilisateur est connecté avant d'essayer d'accéder à ses informations
+if (isset($_SESSION["user_id"])) {
+    $user_id = $_SESSION["user_id"];
+
+    // Récupérer le nombre de notifications non lues pour l'administrateur connecté
+    $stmtUnreadCount = $pdo->prepare("SELECT COUNT(*) FROM notifications WHERE user_id = ? AND status = 'unread'");
+    $stmtUnreadCount->execute([$user_id]);
+    $unreadCount = $stmtUnreadCount->fetchColumn();
+} else {
+    // Si l'utilisateur n'est pas connecté, ne pas tenter d'utiliser $_SESSION["user_id"]
+    $unreadCount = 0;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,6 +23,7 @@
     <title>FabLab - Gestion des impressions 3D</title>
     <link rel="stylesheet" href="/public/assets/css/header.css">
     <link rel="stylesheet" href="/public/assets/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -24,6 +42,15 @@
                         <!-- Afficher les boutons dynamiques si l'utilisateur est connecté -->
                         <?php if ($_SESSION['role'] === 'admin'): ?>
                             <!-- Boutons pour l'admin -->
+                            <a href="/backend/views/notification-admin.php">
+                                <!-- Icône de notification -->
+                                <i class="fas fa-bell"></i>
+
+                                <?php if ($unreadCount > 0) { ?>
+                                    <!-- Pastille rouge si des notifications non lues -->
+                                    <span class="notification-badge"><?php echo $unreadCount; ?></span>
+                                <?php } ?>
+                            </a>
                             <a href="/backend/views/commande.php">Passer une commande</a>
                             <a href="/backend/views/attentes.php">Impressions en attente</a>
                             <a href="/backend/views/cours.php">Impressions en cours</a>

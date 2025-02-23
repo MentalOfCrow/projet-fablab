@@ -1,17 +1,31 @@
 <?php
+session_start();
 include '../db/config.php';
 
-session_start();
+// Vérification si l'utilisateur est connecté et s'il a bien un rôle admin
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] !== "admin") {
     header("Location: ../views/login.php");
     exit();
 }
 
-// Récupérer les infos de l'utilisateur connecté
+// Récupérer l'ID de l'utilisateur connecté
+$user_id = $_SESSION["user_id"];
+
+// Vérification si l'ID est valide
+if (!is_numeric($user_id)) {
+    die("Erreur : L'ID de l'utilisateur est invalide.");
+}
+
+// Requête pour récupérer le nom de l'utilisateur
 $stmt = $pdo->prepare("SELECT fullname FROM users WHERE id = ?");
-$stmt->execute([$_SESSION["user_id"]]);
+$stmt->execute([$user_id]);
 $user = $stmt->fetch();
 
+if ($user) {
+    $fullname = $user['fullname'];  // Nom de l'utilisateur connecté
+} else {
+    die("Utilisateur introuvable.");
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +43,7 @@ $user = $stmt->fetch();
 <?php include '../../backend/includes/header.php'; ?>
 
 <div class="dashboard-container">
-    <h1>Bienvenue sur votre espace de gestion, <?php echo htmlspecialchars($user['fullname']); ?> 👋</h1>
+<h1>Bienvenue sur votre espace de gestion, <?php echo htmlspecialchars($fullname); ?> 👋</h1>
     <p>
         Vous êtes connecté en tant qu’administrateur. Cet espace vous permet de gérer efficacement les commandes d’impression 3D,
         d’administrer les imprimantes, de suivre l’état des impressions et d’accéder aux statistiques de production.

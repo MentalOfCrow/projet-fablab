@@ -1,0 +1,115 @@
+/* Style de base pour la page de notifications */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container général pour les notifications */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Titre de la section */
+#notification h2 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Boîte de notification */
+#notification-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Liste des notifications */
+#notifications-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style pour chaque notification */
+#notifications-list li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Différencier les notifications non lues */
+#notifications-list li.unread {
+    background-color: #e9f5ff;
+}
+
+/* Différencier les notifications lues */
+#notifications-list li.read {
+    background-color: #f1f1f1;
+}
+
+/* Style du lien pour marquer la notification comme lue */
+#notifications-list li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Changer la couleur du lien au survol */
+#notifications-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Section de notification non lues et lues */
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Styles pour la date et le message */
+#notifications-list li p {
+    margin: 5px 0;
+    color: #555;
+}
+
+#notifications-list li p strong {
+    font-weight: bold;
+}
+
+/* Style du message de confirmation */
+#notification-box p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Style du bouton "Retour" */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 30px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 250px;
+}
+
+/* Effet au survol du bouton retour */
+.back-btn:hover {
+    background-color: #34495e;
+    color: #f39c12;
+}

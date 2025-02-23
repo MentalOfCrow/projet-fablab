@@ -126,6 +126,7 @@ h2 {
 
 .order-info p {
     font-size: 14px;
+    margin-top: 10px;
     color: #555;
 }
 
@@ -141,6 +142,12 @@ h2 {
     cursor: pointer;
     margin-right: 10px;
     transition: background-color 0.3s;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 92%;
+    width: 92px;
+    height: 33px;
+
 }
 
 .btn-edit:hover,

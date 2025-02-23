@@ -41,8 +41,44 @@
 .nav-links a:hover {
     color: #f39c12; /* Jaune doux au survol */
     padding-bottom: 5px;
+    border-bottom: solid 2px;
 }
 
 .nav-links a:last-child {
     margin-right: 0; /* Enlever la marge droite du dernier élément */
 }
+
+/* Style du bouton de notifications */
+.notification-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    width: 100px;
+    margin: 0 15px;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.3s ease, padding-bottom 0.3s ease;
+}
+
+.notification-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Agrandir l'icône */
+.fas.fa-bell {
+    font-size: 26px; /* Augmente la taille de l'icône (tu peux ajuster cette valeur) */
+    margin-left: 40px;
+}
+
+/* Style pour la pastille rouge */
+.notification-badge {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    position: sticky;
+    top: -5px;  /* Ajuster pour rapprocher la pastille */
+    right: -5px; /* Ajuster pour rapprocher la pastille */
+    font-size: 12px;
+}
+

@@ -62,6 +62,12 @@ if (!$commande) {
             <option value="Violet" <?php if ($commande['couleur'] == 'Violet') echo 'selected'; ?>>Violet</option>
         </select>
 
+        <label for="type_impression">Type d'impression :</label>
+        <select id="type_impression" name="type_impression" required>
+            <option value="résine">Résine</option>
+            <option value="filament">Filament</option>
+        </select>
+
         <label for="hauteur">Hauteur (mm) :</label>
         <input type="number" id="hauteur" name="hauteur" value="<?php echo htmlspecialchars($commande['hauteur']); ?>" step="0.1" required>
 
@@ -72,7 +78,6 @@ if (!$commande) {
         <input type="number" id="largeur" name="largeur" value="<?php echo htmlspecialchars($commande['largeur']); ?>" step="0.1" required>
 
         <button type="submit" class="submit-button">Enregistrer les modifications</button>
-        <a href="dashboard-user.php" class="cancel-link">Annuler</a>
 
         <input type="hidden" name="commande_id" value="<?php echo $commande['id']; ?>">
     </form>

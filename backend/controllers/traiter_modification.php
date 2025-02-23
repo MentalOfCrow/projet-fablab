@@ -9,7 +9,7 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 // Vérifier si les champs sont bien envoyés
-if (!isset($_POST['commande_id'], $_POST['nom_commande'], $_POST['couleur'], $_POST['hauteur'], $_POST['longueur'], $_POST['largeur'])) {
+if (!isset($_POST['commande_id'], $_POST['nom_commande'], $_POST['couleur'],$_POST['type_impression'], $_POST['hauteur'], $_POST['longueur'], $_POST['largeur'])) {
     die("Tous les champs sont requis.");
 }
 
@@ -17,6 +17,7 @@ if (!isset($_POST['commande_id'], $_POST['nom_commande'], $_POST['couleur'], $_P
 $commande_id = intval($_POST['commande_id']);
 $nom_commande = trim($_POST['nom_commande']);
 $couleur = trim($_POST['couleur']);
+$type_impression = trim($_POST['type_impression']);
 $hauteur = floatval($_POST['hauteur']);
 $longueur = floatval($_POST['longueur']);
 $largeur = floatval($_POST['largeur']);
@@ -38,11 +39,11 @@ if (!$commande) {
 // Mettre à jour la commande
 $stmt = $pdo->prepare("
     UPDATE commandes 
-    SET nom_commande = ?, couleur = ?, hauteur = ?, longueur = ?, largeur = ? 
+    SET nom_commande = ?, couleur = ?, type_impression = ?, hauteur = ?, longueur = ?, largeur = ? 
     WHERE id = ?
 ");
 
-$result = $stmt->execute([$nom_commande, $couleur, $hauteur, $longueur, $largeur, $commande_id]);
+$result = $stmt->execute([$nom_commande, $couleur, $type_impression, $hauteur, $longueur, $largeur, $commande_id]);
 
 if (!$result) {
     die("Erreur SQL : " . implode(" - ", $stmt->errorInfo()));
