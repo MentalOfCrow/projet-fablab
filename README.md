@@ -58,7 +58,7 @@
 - Fichier .env (optionnel si tu utilises une configuration par environnement) :
 
 ### utilisation
-- Démarrer le serveur web (par exemple avec PHP intégré) : php -S localhost:9080 -t public
+- Démarrer le serveur web (par exemple avec PHP intégré) : php -S localhost:9080 -t public ou php -S localhost:9080
 
 ### Accéder à l’application :
 
@@ -69,11 +69,38 @@
 - Aller sur l’onglet “Créer une nouvelle commande”, remplir le formulaire (client, fichier STL, etc.), puis valider.
 
 ### Suivi des impressions :
-- Dans le tableau de bord, tu visualises les imprimantes disponibles, les commandes en cours, etc.
+- ✔️ Dans le tableau de bord, tu visualises les imprimantes disponibles, les commandes en cours, etc.
 
+### Accéder au projet : 
+
+- Création de la base de données :
+- Dans WampServer, ouvrez phpMyAdmin et créez une nouvelle base de données nommée fablab_db.
+
+
+- Importation de la base de données :
+
+- Rendez-vous dans le dossier /backend/bd/ et localisez le fichier bdd.sql.
+- Copiez ce fichier sur votre bureau.
+- Dans phpMyAdmin, sélectionnez la base fablab_db, cliquez sur l’onglet Importer, puis importez le fichier bdd.sql.
+- Cette étape est très importante pour recréer la structure et insérer les données nécessaires au fonctionnement du projet.
+
+
+- Lancement du projet :
+- Ouvrez un terminal à la racine du projet et lancez la commande suivante :
+- php -S localhost:9080 ou php -S localhost:9080 -t public
+- Si le projet ne se lance pas, redémarrez votre ordinateur et réexécutez la commande.
+
+- Accès à l’application :
+- Connectez-vous avec l’un des comptes préconfigurés :
+
+- Compte Administrateur
+- Identifiant : johan
+- Mot de passe : 010422
+- Compte Utilisateur
+- Identifiant : paul
+- Mot de passe : 010203
 
 ### Structure du Projet
-
 PROJET-FABLAB :
 
 ```
@@ -173,7 +200,6 @@ PROJET-FABLAB/
 └── router.php
 ````
 
-
 ### Principaux dossiers :
 
 - backend : logique métier (contrôleurs, modèles, vues, config BDD, etc.).
@@ -199,4 +225,4 @@ PROJET-FABLAB/
 - Hugo 
 - Johan
 
-Pour toute question, ouvre une issue ou contacte-nous directement.
+Pour toute question, ouvre une issue ou contacte-nous directement. !!!
