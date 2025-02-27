@@ -1,5 +1,5 @@
 <?php
-include '../db/config.php';
+include __DIR__ . '/../db/config.php';
 
 // Vérifier si l'utilisateur est connecté avant d'essayer d'accéder à ses informations
 if (isset($_SESSION["user_id"])) {
